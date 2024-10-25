@@ -1,7 +1,10 @@
 # faivbet
 dettagli gruppo:
-kodra matteo 902249//
+
+kodra matteo 902249
+
 raffaele pappa 899915
+
 dantonio lorenzo 899759
 
 dettagli progetto:
