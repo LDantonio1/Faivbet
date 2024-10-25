@@ -1,4 +1,3 @@
-# faivbet
 # dettagli gruppo:
 
 kodra matteo 902249
