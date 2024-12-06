@@ -8,7 +8,6 @@
     tools:context=".MainActivity">
 
     <!-- roba varia, dovrebbe essere abbastanza facile da capire, nel caso chidete -->
-
     <LinearLayout
         android:id="@+id/faivbet_logo"
         android:layout_width="wrap_content"
@@ -25,6 +24,7 @@
              un'altro xml che poi importo (c'e sicuramente un modo migliore, ma solo cosi sono riuscito a farlo) -->
 
     </LinearLayout>
+
 
     <TextView
         android:id="@+id/welcome"
@@ -155,4 +155,5 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_end="20dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
