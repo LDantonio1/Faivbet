@@ -3,7 +3,10 @@
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="0dp"
+    app:strokeWidth="0dp"
+    android:background="@android:color/transparent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,6 +20,7 @@
             android:layout_height="100dp"
             android:scaleType="centerInside"
             app:srcCompat="@drawable/faivbet"
+            android:background="@null"
             />
 
         <!-- Buttons -->
