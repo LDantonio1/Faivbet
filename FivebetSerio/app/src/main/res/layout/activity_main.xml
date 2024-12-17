@@ -85,7 +85,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/password"
         app:layout_constraintTop_toBottomOf="@id/textField_email"
-        app:layout_constraintBottom_toTopOf="@id/login_Button"
+        app:layout_constraintBottom_toTopOf="@id/button_layout"
         app:layout_constraintStart_toStartOf="@id/guideline"
         app:layout_constraintEnd_toEndOf="@id/guideline2"
         android:layout_marginStart="20dp"
@@ -102,33 +102,60 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-        android:id="@+id/login_Button"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/button_layout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintWidth="200dp"
-        android:text="@string/Login"
-        android:textColor="@color/black"
-        android:layout_margin="30dp"
-        android:backgroundTint="#95f94140"
-        app:layout_constraintTop_toBottomOf="@id/textFieldPassword"
-        app:layout_constraintStart_toStartOf="@id/guideline"
-        app:layout_constraintEnd_toEndOf="@id/guideline2"
-        />
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/textFieldPassword"
+        android:gravity="center"
+        android:layout_marginTop="30dp">
+
+        <Button
+            android:id="@+id/login_Button"
+            android:layout_marginEnd="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintWidth="200dp"
+            android:text="@string/Login"
+            android:textColor="@color/black"
+            android:backgroundTint="#95f94140"
+            app:layout_constraintTop_toBottomOf="@id/textFieldPassword"
+            app:layout_constraintStart_toStartOf="@id/guideline"
+            app:layout_constraintEnd_toEndOf="@id/guideline2"
+            />
+
+        <ImageButton
+            android:id="@+id/loginGoogle_Button"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:layout_marginStart="10dp"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            app:layout_constraintTop_toBottomOf="@id/textFieldPassword"
+            app:layout_constraintStart_toStartOf="@id/guideline"
+            app:layout_constraintEnd_toEndOf="@id/guideline2"
+            android:src="@drawable/gicon"
+            android:scaleType="fitCenter"
+            android:contentDescription="Button with image"
+            android:background="@drawable/rounded_button"
+            />
+    </LinearLayout>
 
     <Button
         android:id="@+id/register_Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintWidth="200dp"
+        app:layout_constraintWidth="120dp"
         android:textColor="@color/black"
         android:backgroundTint="#95f94140"
         android:text="@string/Registrati"
         android:layout_margin="30dp"
-        app:layout_constraintTop_toBottomOf="@id/login_Button"
+        app:layout_constraintTop_toBottomOf="@id/button_layout"
         app:layout_constraintStart_toStartOf="@id/guideline"
         app:layout_constraintEnd_toEndOf="@id/guideline2"
         />
+
 
     <FrameLayout
         android:id="@+id/or_Line"
@@ -139,7 +166,7 @@
         app:layout_constraintWidth="150dp"
         app:layout_constraintStart_toStartOf="@id/guideline"
         app:layout_constraintEnd_toEndOf="@id/guideline2"
-        app:layout_constraintTop_toBottomOf="@id/login_Button"
+        app:layout_constraintTop_toBottomOf="@id/button_layout"
         app:layout_constraintBottom_toTopOf="@id/register_Button"/>
 
     <androidx.constraintlayout.widget.Guideline

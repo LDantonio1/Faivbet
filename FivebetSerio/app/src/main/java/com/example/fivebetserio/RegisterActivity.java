@@ -3,8 +3,11 @@ package com.example.fivebetserio;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -38,8 +41,16 @@ public class RegisterActivity extends AppCompatActivity {
         editTextEmail = findViewById(R.id.register_email);
         editTextDate = findViewById(R.id.register_date);
 
-
+        ImageButton backButton = findViewById(R.id.back_button_register);
         Button registerButton = findViewById(R.id.register_button);
+
+        backButton.setOnClickListener(view -> {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+
+            //animazione personalizzata
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+        });
 
         registerButton.setOnClickListener(view -> {
             if (isEmailOk(editTextEmail.getText().toString())){
