@@ -5,6 +5,7 @@ import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button loginButton = findViewById(R.id.login_Button); // dichiaro una variabile collegata al bottone login
         Button registerButton = findViewById(R.id.register_Button);
+        ImageButton loginGoogleButton = findViewById(R.id.loginGoogle_Button);
 
         loginButton.setOnClickListener(view -> { //quando viene premuto il tasto login fa quello che c'e dentro la graffa
             if (isEmailOk(editTextEmail.getText().toString())){  //verifica che la mail rispetti tutti i parametri

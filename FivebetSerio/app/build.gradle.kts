@@ -33,6 +33,8 @@ android {
 
 dependencies {
 
+    annotationProcessor(libs.room.compiler)
+    implementation(libs.room.runtime)
     implementation(libs.commons.validator)
     implementation(libs.appcompat)
     implementation(libs.material)
