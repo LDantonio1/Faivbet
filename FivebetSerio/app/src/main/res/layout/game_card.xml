@@ -59,7 +59,6 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/quota1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -67,7 +66,6 @@
                 android:textAlignment="center"/>
 
             <TextView
-                android:id="@+id/quota2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -75,7 +73,6 @@
                 android:textAlignment="center"/>
 
             <TextView
-                android:id="@+id/quota3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

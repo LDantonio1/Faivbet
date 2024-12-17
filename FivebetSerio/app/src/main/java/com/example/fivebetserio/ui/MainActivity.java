@@ -1,19 +1,13 @@
-package com.example.fivebetserio;
+package com.example.fivebetserio.ui;
 
 import android.content.Intent;
-import android.nfc.Tag;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-import com.google.android.material.snackbar.Snackbar;
+import com.example.fivebetserio.R;
 import com.google.android.material.textfield.TextInputEditText;
 
 import org.apache.commons.validator.routines.EmailValidator;

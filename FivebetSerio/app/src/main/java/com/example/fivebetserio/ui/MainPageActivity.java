@@ -35,18 +35,17 @@ public class MainPageActivity extends AppCompatActivity {
         return leagues;
     }
     private void addLeagueSection(League league) {
-        View leagueSection = LayoutInflater.from(this).inflate(R.layout.league_scroll_view, linearLayoutContainer, false);
+        View leagueSection = LayoutInflater.from(this).inflate(R.layout.leagues_scroll_view, linearLayoutContainer, false);
         TextView leagueTitle = leagueSection.findViewById(R.id.leagueTitle);
         leagueTitle.setText(league.getName());
         LinearLayout leagueMatchesContainer = leagueSection.findViewById(R.id.leagueMatchesContainer);
         for (Match match : league.getMatches()) {
             View matchCard = LayoutInflater.from(this).inflate(R.layout.game_card, leagueMatchesContainer, false);
             // Popola il matchCard con i dati
-            TextView team1 = matchCard.findViewById(R.id.team1Name);
-            TextView team2 = matchCard.findViewById(R.id.team2Name);
+            /*TextView team1 = matchCard.findViewById(R.id.home_team);
+            TextView team2 = matchCard.findViewById(R.id.away_team);
             team1.setText(match.getTeam1());
-            Log.d("nometeam", "team name: " + match.getTeam1());
-            team2.setText(match.getTeam2());
+            team2.setText(match.getTeam2());*/
             leagueMatchesContainer.addView(matchCard);
         }
         linearLayoutContainer.addView(leagueSection);
