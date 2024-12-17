@@ -14,7 +14,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="88dp"
         app:layout_constraintEnd_toEndOf="@id/guideline2"
-
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="parent">
 

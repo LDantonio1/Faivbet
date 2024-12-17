@@ -14,6 +14,8 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import org.apache.commons.validator.routines.EmailValidator;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Calendar;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -23,6 +25,8 @@ public class RegisterActivity extends AppCompatActivity {
     public static final String TAG = MainActivity.class.getName();
 
     private TextInputEditText editTextName, editTextSurname, editTextPassword, editTextEmail;
+
+    int year,month, day;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,39 +51,24 @@ public class RegisterActivity extends AppCompatActivity {
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         });
 
-        registerButton.setOnClickListener(view -> {
-            if (isEmailOk(editTextEmail.getText().toString())){
-                if (isPasswordOk(editTextPassword.getText().toString())){
-                    Intent intent = new Intent(this, MainPageActivity.class);
-                    startActivity(intent);
-                }
-                else
-                    editTextPassword.setError("Password needs to have at least 7 characters");
-
-            }
-            else
-                editTextEmail.setError("Email is not correct");
-            //Intent intent = new Intent(this, MainPageActivity.class);
-            //startActivity(intent);
-        });
-
-
-
-
         // Disabilita la tastiera (già fatto nell'XML)
         editTextDate.setFocusable(false);
 
+        //gestisce la selezione della data di nascita
         editTextDate.setOnClickListener(v -> {
             // Ottieni la data corrente per impostarla come valore iniziale
             final Calendar calendar = Calendar.getInstance();
-            int year = calendar.get(Calendar.YEAR);
-            int month = calendar.get(Calendar.MONTH);
-            int day = calendar.get(Calendar.DAY_OF_MONTH);
+            year = calendar.get(Calendar.YEAR);
+            month = calendar.get(Calendar.MONTH);
+            day = calendar.get(Calendar.DAY_OF_MONTH);
 
             // Apri il DatePickerDialog
             DatePickerDialog datePickerDialog = new DatePickerDialog(
                     RegisterActivity.this,
                     (view, selectedYear, selectedMonth, selectedDay) -> {
+                        year = selectedYear;
+                        month = selectedMonth + 1; // I mesi partono da 0, quindi aggiungiamo 1
+                        day = selectedDay;
                         // Mostra la data selezionata nell'EditText
                         String selectedDate = selectedDay + "/" + (selectedMonth + 1) + "/" + selectedYear;
                         editTextDate.setText(selectedDate);
@@ -89,9 +78,47 @@ public class RegisterActivity extends AppCompatActivity {
 
             datePickerDialog.show();
         });
+
+        //controlla se la password e la mail sono valide e controlla che l'utente sia maggiorenne
+        registerButton.setOnClickListener(view -> {
+            if (isEmailOk(editTextEmail.getText().toString())){
+                if (isPasswordOk(editTextPassword.getText().toString())){
+                    if (isAdult(year, month, day)){
+                        Intent intent = new Intent(this, MainPageActivity.class);
+                        startActivity(intent);
+                    }
+                    else
+                        editTextDate.setError("non sei maggiorenne");
+                }
+                else
+                    editTextPassword.setError("Password needs to have at least 7 characters");
+
+            }
+            else
+                editTextEmail.setError("Email is not correct");
+        });
+
     }
 
+    //classe per controllare se l'utente è maggiorenne
+    public boolean isAdult(int year, int month, int day) {
+        // Ottieni la data attuale
+        Calendar today = Calendar.getInstance();
+        int currentYear = today.get(Calendar.YEAR);
+        int currentMonth = today.get(Calendar.MONTH) + 1; // I mesi partono da 0
+        int currentDay = today.get(Calendar.DAY_OF_MONTH);
 
+        // Calcola la differenza degli anni
+        int age = currentYear - year;
+
+        // Verifica il mese e il giorno per aggiustare il calcolo
+        if (currentMonth < month || (currentMonth == month && currentDay < day)) {
+            age--; // L'utente non ha ancora compiuto gli anni
+        }
+
+        // Ritorna true se ha almeno 18 anni
+        return age >= 18;
+    }
 
     private boolean isEmailOk(String email){
         return EmailValidator.getInstance().isValid(email);  //libreria esterna che fa da sola il controllo per la mail

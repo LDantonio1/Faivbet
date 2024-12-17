@@ -15,9 +15,9 @@ public class LeagueAdapter {
         //per ora ho fatto che mi genera delle liste fittizie ma devo capire bene a cosa serve nell'implementazione del database
 
         List<Match> matches = new ArrayList<>();
-        matches.add(new Match("INT", "EMP"));
-        matches.add(new Match("MLN", "FIO"));
-        matches.add(new Match("JVN", "NPL"));
+        //matches.add(new Match("INT", "EMP"));
+        //matches.add(new Match("MLN", "FIO"));
+        //matches.add(new Match("JVN", "NPL"));
 
         leagues.add(new League("Serie A", matches));
         leagues.add(new League("Champions League", matches));
