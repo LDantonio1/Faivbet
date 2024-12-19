@@ -1,53 +1,61 @@
 package com.example.fivebetserio.ui;
+
+
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import androidx.appcompat.app.AppCompatActivity;
-import com.example.fivebetserio.adapter.LeagueAdapter;
+import android.view.ViewGroup;
+
 import com.example.fivebetserio.R;
+import com.example.fivebetserio.adapter.LeaguesRecyclerAdapter;
 import com.example.fivebetserio.model.League;
+import com.example.fivebetserio.model.LeaguesAPIResponse;
 import com.example.fivebetserio.model.Match;
-import android.util.Log;
+import com.example.fivebetserio.model.MatchesAPIResponse;
+import com.example.fivebetserio.util.Constants;
+import com.example.fivebetserio.util.JSONParserUtils;
+
+import java.io.IOException;
 import java.util.List;
+
 public class MainPageActivity extends AppCompatActivity {
-    private LinearLayout linearLayoutContainer;
+
+    public static final String TAG = MainPageActivity.class.getName();
+
+
+    public MainPageActivity() {
+        // Required empty public constructor
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
-        Log.d("MainPageActivity", "onCreate chiamato");
-        linearLayoutContainer = findViewById(R.id.linearLayoutContainer);
-        // Simulazione di chiamata API
-        List<League> leagues = fetchLeaguesFromAPI();
-        for (League league : leagues) {
-            addLeagueSection(league);
+
+        RecyclerView recyclerView = findViewById(R.id.recyclerViewLeagues);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(
+                recyclerView.getContext(), DividerItemDecoration.VERTICAL);
+        recyclerView.addItemDecoration(dividerItemDecoration);
+
+        JSONParserUtils jsonParserUtils = new JSONParserUtils(getAssets());
+
+        try {
+            LeaguesAPIResponse response = jsonParserUtils.parseLeaguesJSONFileWithGSon(Constants.LEAGUES_FILE);
+            List<League> leagueList = response.getLeagues();
+
+            LeaguesRecyclerAdapter adapter =
+                    new LeaguesRecyclerAdapter(R.layout.item_league, leagueList, this);
+            recyclerView.setAdapter(adapter);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-    }
-    private List<League> fetchLeaguesFromAPI() {
-        // Log per verificare se la funzione viene chiamata
-        Log.d("MainPageActivity", "Chiamata a fetchLeaguesFromAPI()");
-        // Simula una chiamata API o usala realmente
-        List<League> leagues = LeagueAdapter.getLeagues();  // Dati di esempio
-        // Log per verificare cosa restituisce la funzione
-        Log.d("MainPageActivity", "Leagues recuperate: " + (leagues != null ? leagues.size() : 0));
-        return leagues;
-    }
-    private void addLeagueSection(League league) {
-        View leagueSection = LayoutInflater.from(this).inflate(R.layout.leagues_scroll_view, linearLayoutContainer, false);
-        TextView leagueTitle = leagueSection.findViewById(R.id.leagueTitle);
-        leagueTitle.setText(league.getName());
-        LinearLayout leagueMatchesContainer = leagueSection.findViewById(R.id.leagueMatchesContainer);
-        for (Match match : league.getMatches()) {
-            View matchCard = LayoutInflater.from(this).inflate(R.layout.game_card, leagueMatchesContainer, false);
-            // Popola il matchCard con i dati
-            /*TextView team1 = matchCard.findViewById(R.id.home_team);
-            TextView team2 = matchCard.findViewById(R.id.away_team);
-            team1.setText(match.getTeam1());
-            team2.setText(match.getTeam2());*/
-            leagueMatchesContainer.addView(matchCard);
-        }
-        linearLayoutContainer.addView(leagueSection);
     }
 }

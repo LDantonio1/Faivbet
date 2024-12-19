@@ -13,7 +13,6 @@ import com.google.android.material.textfield.TextInputEditText;
 import org.apache.commons.validator.routines.EmailValidator;
 
 public class MainActivity extends AppCompatActivity {
-
     public static final String TAG = MainActivity.class.getName(); //una sorta di ID per identificare questa classe
 
     //val contextView = findViewById<View>(R.id.context_view); roba a caso, dovrebbe essere inutile, mentre cerco di capirlo lasciate cosi

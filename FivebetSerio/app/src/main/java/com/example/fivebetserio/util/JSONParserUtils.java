@@ -1,34 +1,48 @@
 package com.example.fivebetserio.util;
-import android.content.Context;
 
+import android.content.res.AssetManager;
+
+import com.example.fivebetserio.model.League;
+import com.example.fivebetserio.model.LeaguesAPIResponse;
+import com.example.fivebetserio.model.Match;
+import com.example.fivebetserio.model.MatchesAPIResponse;
 import com.google.gson.Gson;
-import com.example.fivebetserio.model.LeagueAPIResponse;
-import com.example.fivebetserio.model.MatchAPIResponse;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Type;
+import java.util.List;
 
 public class JSONParserUtils {
+    private AssetManager assetManager;
 
-    public Context context;
-
-    public JSONParserUtils(Context context) {
-        this.context = context;
+    public JSONParserUtils(AssetManager assetManager) {
+        this.assetManager = assetManager;
     }
 
-    public LeagueAPIResponse parseLeaguesJSONFileWithGSon(String filename) throws IOException {
-        InputStream inputStream = context.getAssets().open(filename);
+    // Metodo per analizzare il file JSON delle leghe
+    public LeaguesAPIResponse parseLeaguesJSONFileWithGSon(String filename) throws IOException {
+        InputStream inputStream = assetManager.open(filename);
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 
-        return new Gson().fromJson(bufferedReader, LeagueAPIResponse.class);
+        Type listType = new TypeToken<List<League>>(){}.getType();
+        List<League> leagues = new Gson().fromJson(bufferedReader, listType);
+
+        return new LeaguesAPIResponse(leagues);
     }
 
-    public MatchAPIResponse parseMatchesJSONFileWithGSon(String filename) throws IOException {
-        InputStream inputStream = context.getAssets().open(filename);
+    // Metodo per analizzare il file JSON delle partite
+    public MatchesAPIResponse parseMatchesJSONFileWithGSon(String filename) throws IOException {
+        InputStream inputStream = assetManager.open(filename);
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 
-        return new Gson().fromJson(bufferedReader, MatchAPIResponse.class);
+
+        Type listType = new TypeToken<List<Match>>(){}.getType();
+        List<Match> matches = new Gson().fromJson(bufferedReader, listType);
+
+        return new MatchesAPIResponse(matches);
     }
 }

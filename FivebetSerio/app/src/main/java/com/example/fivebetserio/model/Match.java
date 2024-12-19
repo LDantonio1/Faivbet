@@ -1,7 +1,6 @@
 package com.example.fivebetserio.model;
 
-import java.util.List;
-
+//questa classe è usata da MatchAPIResponse che crea una lista di Match
 public class Match {
     private String id;
     private String sport_key;
