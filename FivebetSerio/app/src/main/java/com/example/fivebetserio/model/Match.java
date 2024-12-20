@@ -25,7 +25,7 @@ public class Match {
     public String getId() {
         return id;
     }
-
+//prova
     public void setId(String id) {
         this.id = id;
     }
