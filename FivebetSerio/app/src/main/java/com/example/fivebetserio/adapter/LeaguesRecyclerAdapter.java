@@ -44,7 +44,7 @@ public class LeaguesRecyclerAdapter extends RecyclerView.Adapter<LeaguesRecycler
         public TextView getTextViewTitle() {
             return textViewTitle;
         }
-
+        public RecyclerView getRecyclerViewMatches() {return recyclerViewMatches;}
     }
 
     public LeaguesRecyclerAdapter(int layout, List<League> leagueList, Context context) {
@@ -56,7 +56,6 @@ public class LeaguesRecyclerAdapter extends RecyclerView.Adapter<LeaguesRecycler
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        // Create a new view, which defines the UI of the list item
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(layout, viewGroup, false);
 
@@ -72,17 +71,18 @@ public class LeaguesRecyclerAdapter extends RecyclerView.Adapter<LeaguesRecycler
                 false
         );
 
-
         JSONParserUtils jsonParserUtils = new JSONParserUtils(context.getAssets());
         List<Match> matchList = null;
 
         try {
+            //mi "prendo" i dati delle partite dall'api
             MatchesAPIResponse matchResponse = jsonParserUtils.parseMatchesJSONFileWithGSon(Constants.MATCHES_FILE);
-
             matchList = matchResponse.getMatches();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        //popolo la recyclerView
         viewHolder.recyclerViewMatches.setLayoutManager(layoutManager);
         MatchesRecyclerAdapter matchAdapter = new MatchesRecyclerAdapter(R.layout.item_match, matchList);
         viewHolder.recyclerViewMatches.setAdapter(matchAdapter);

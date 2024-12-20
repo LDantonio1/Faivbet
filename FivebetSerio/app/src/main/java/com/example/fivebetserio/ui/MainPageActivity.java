@@ -1,6 +1,6 @@
 package com.example.fivebetserio.ui;
 
-
+//1 ora e 8
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,16 +8,10 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.example.fivebetserio.R;
 import com.example.fivebetserio.adapter.LeaguesRecyclerAdapter;
 import com.example.fivebetserio.model.League;
 import com.example.fivebetserio.model.LeaguesAPIResponse;
-import com.example.fivebetserio.model.Match;
-import com.example.fivebetserio.model.MatchesAPIResponse;
 import com.example.fivebetserio.util.Constants;
 import com.example.fivebetserio.util.JSONParserUtils;
 
@@ -28,14 +22,12 @@ public class MainPageActivity extends AppCompatActivity {
 
     public static final String TAG = MainPageActivity.class.getName();
 
-
-    public MainPageActivity() {
-        // Required empty public constructor
-    }
+    public MainPageActivity() {}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //seleziono il layout
         setContentView(R.layout.activity_main_page);
 
         RecyclerView recyclerView = findViewById(R.id.recyclerViewLeagues);
@@ -48,6 +40,7 @@ public class MainPageActivity extends AppCompatActivity {
         JSONParserUtils jsonParserUtils = new JSONParserUtils(getAssets());
 
         try {
+            //prendo i file dall'api( in realtà per ora sono statici, ho salvato nella cartella assets i risultati dell api ma enso che nella prossima lezione spiegi come fare una get)
             LeaguesAPIResponse response = jsonParserUtils.parseLeaguesJSONFileWithGSon(Constants.LEAGUES_FILE);
             List<League> leagueList = response.getLeagues();
 

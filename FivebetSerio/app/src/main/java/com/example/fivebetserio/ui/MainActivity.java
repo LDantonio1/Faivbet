@@ -32,7 +32,9 @@ public class MainActivity extends AppCompatActivity {
         ImageButton loginGoogleButton = findViewById(R.id.loginGoogle_Button);
 
         loginButton.setOnClickListener(view -> { //quando viene premuto il tasto login fa quello che c'e dentro la graffa
-            if (isEmailOk(editTextEmail.getText().toString())){  //verifica che la mail rispetti tutti i parametri
+            Intent intent = new Intent(this, MainPageActivity.class);
+            startActivity(intent);
+            /*if (isEmailOk(editTextEmail.getText().toString())){  //verifica che la mail rispetti tutti i parametri
                 if (isPasswordOk(editTextPassword.getText().toString())){  //stessa cosa della riga sopra ma per la password
                     // gli intent permettono di navigare fra le activity quindi fra le farie ""schermate"" dell'app
                     Intent intent = new Intent(this, MainPageActivity.class);
@@ -48,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 // qui sotto c'e il codice della snackbar in caso di errore della mail, se preferite usiamo questa, ho usato .setError perche mi sembra leggermente piu chiaro
                 //Snackbar.make(findViewById(R.id.main),"errore nei dati", Snackbar.LENGTH_SHORT).show();
                 editTextEmail.setError("email is not correct");
-
+*/
         });
 
         // se clicchi il bottone register ti manda alla schermata di registrazione

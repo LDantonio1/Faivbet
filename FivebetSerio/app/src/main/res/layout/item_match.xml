@@ -21,34 +21,23 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="25dp"
-            android:orientation="horizontal">
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
             <TextView
                 android:id="@+id/homeTeam"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginStart="5dp"
-                android:textAlignment="center"
-                android:textSize="20sp"
                 android:text="***"/>
-
-            <TextView
-                android:id="@+id/trattino"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:text="-"/>
 
             <TextView
                 android:id="@+id/awayTeam"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textAlignment="center"
-                android:textSize="20sp"
-                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
                 android:text="***"/>
         </LinearLayout>
 
@@ -56,70 +45,27 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="#E0E0E0"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="2dp"
             android:layout_marginBottom="8dp" />
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/uno"
+            <ImageView
+                android:id="@+id/clockImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="1"
-                android:textAlignment="center"/>
+                android:src="@drawable/orologio"
+            />
+
 
             <TextView
-                android:id="@+id/x"
-                android:layout_width="wrap_content"
+                android:id="@+id/date"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="X"
-                android:textAlignment="center"/>
-
-            <TextView
-                android:id="@+id/due"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="2"
-                android:textAlignment="center"/>
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/quota1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="**"
-                android:textAlignment="center"/>
-
-            <TextView
-                android:id="@+id/quota2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="**"
-                android:textAlignment="center"/>
-
-            <TextView
-                android:id="@+id/quota3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="**"
-                android:textAlignment="center"/>
+                android:textAlignment="center"
+                android:text="**-**-****  **:**"/>
 
         </LinearLayout>
 
@@ -127,16 +73,57 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="#E0E0E0"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginTop="2dp"/>
 
 
-        <TextView
-            android:id="@+id/date"
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:text="**-**-****  **:**"/>
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <!-- Pulsante per quota1 -->
+            <Button
+                android:id="@+id/quota1"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:text="**"
+                android:textColor="@android:color/white"
+                android:autoSizeTextType="uniform"
+                android:backgroundTint="#95f94140"
+                android:layout_margin="4dp"
+                android:padding="2dp" />
+
+            <!-- Pulsante per quota2 -->
+            <Button
+                android:id="@+id/quota2"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:text="**"
+                android:textColor="@android:color/white"
+                android:autoSizeTextType="uniform"
+                android:backgroundTint="#95f94140"
+                android:layout_margin="4dp"
+                android:padding="2dp" />
+
+            <!-- Pulsante per quota3 -->
+            <Button
+                android:id="@+id/quota3"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:text="**"
+                android:textColor="@android:color/white"
+                android:autoSizeTextType="uniform"
+                android:backgroundTint="#95f94140"
+                android:layout_margin="4dp"
+                android:padding="2dp" />
+
+        </LinearLayout>
+
 
     </LinearLayout>
 

@@ -2,6 +2,7 @@ package com.example.fivebetserio.model;
 
 //Questa classe è usata da LeagueAPIResponse che crea una lista di oggetti League
 public class League {
+    //i dati devono essere gli stessi restituiti dall'api
     private String key;
     private String group;
     private String title;
