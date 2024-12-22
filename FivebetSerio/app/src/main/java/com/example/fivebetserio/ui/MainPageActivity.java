@@ -1,7 +1,9 @@
 package com.example.fivebetserio.ui;
 
 //1 ora e 8
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -14,6 +16,7 @@ import com.example.fivebetserio.model.League;
 import com.example.fivebetserio.model.LeaguesAPIResponse;
 import com.example.fivebetserio.util.Constants;
 import com.example.fivebetserio.util.JSONParserUtils;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.io.IOException;
 import java.util.List;
@@ -29,6 +32,15 @@ public class MainPageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //seleziono il layout
         setContentView(R.layout.activity_main_page);
+
+        ImageButton logoutButton = findViewById(R.id.logout_button);
+
+        logoutButton.setOnClickListener(view -> {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            FirebaseAuth.getInstance().signOut();
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+        });
 
         RecyclerView recyclerView = findViewById(R.id.recyclerViewLeagues);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

@@ -20,6 +20,14 @@
         app:srcCompat="@drawable/faivbet"
         android:contentDescription="Logo" />
 
+    <ImageButton
+        android:id="@+id/logout_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:contentDescription="logout button"
+        android:src="@drawable/logout"/>
+
     <!-- RecyclerView principale per le leghe -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewLeagues"
