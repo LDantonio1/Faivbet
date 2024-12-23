@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "403740037405",
+    "project_id": "faivbet-6776c",
+    "storage_bucket": "faivbet-6776c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:403740037405:android:b459a9c48a4a2986d311f4",
+        "android_client_info": {
+          "package_name": "com.example.fivebetserio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "403740037405-dnf0s35f0dvhuha80bd8e3sefmsk6cnd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fivebetserio",
+            "certificate_hash": "f7155ec60219c99f83c5177b64785e2c1e13d8a4"
+          }
+        },
+        {
+          "client_id": "403740037405-8gndia9jc8rgdecttuaslr54pukuf0rf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPr6bPZSKwawErdAK86gSQxfhv1_FOio8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "403740037405-8gndia9jc8rgdecttuaslr54pukuf0rf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

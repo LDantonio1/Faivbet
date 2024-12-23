@@ -1,14 +1,32 @@
 package com.example.fivebetserio.ui;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.IntentSenderRequest;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.fivebetserio.R;
+import com.example.fivebetserio.repository.user.IUserRepository;
+import com.example.fivebetserio.ui.viewmodel.UserViewModel;
+import com.google.android.gms.auth.api.identity.BeginSignInRequest;
+import com.google.android.gms.auth.api.identity.Identity;
+import com.google.android.gms.auth.api.identity.SignInClient;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 
 import org.apache.commons.validator.routines.EmailValidator;
 
@@ -19,10 +37,24 @@ public class MainActivity extends AppCompatActivity {
 
     private TextInputEditText editTextEmail, editTextPassword;
 
+    ////////////////////////
+    /*
+
+    private SignInClient oneTapClient;
+    private BeginSignInRequest signInRequest;
+    private ActivityResultLauncher<IntentSenderRequest> activityResultLauncher;
+    private ActivityResultContracts.StartIntentSenderForResult startIntentSenderForResult;
+    private UserViewModel userViewModel;
+
+    */ //////////////////////////////
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ////////////////////////
+
 
         editTextEmail =  findViewById(R.id.login_email); // dichiarazione variabili contenenti login e password
         editTextPassword = findViewById(R.id.login_password);
@@ -58,6 +90,10 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, RegisterActivity.class);
             startActivity(intent);
         });
+
+
+
+
 
     }
 
