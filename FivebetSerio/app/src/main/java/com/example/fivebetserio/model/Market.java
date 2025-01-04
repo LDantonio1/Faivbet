@@ -1,16 +1,10 @@
 package com.example.fivebetserio.model;
 
-import androidx.room.TypeConverters;
-
-import com.example.fivebetserio.database.converter.OutcomeConverter;
-
 import java.util.List;
 
 public class Market {
     private String key;
     private String last_update;
-
-    @TypeConverters(OutcomeConverter.class)
     private List<Outcome> outcomes;
 
     public Market(String key, String last_update, List<Outcome> outcomes) {

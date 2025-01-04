@@ -1,38 +1,18 @@
 package com.example.fivebetserio.model;
 
-import androidx.annotation.NonNull;
-import androidx.room.Entity;
-import androidx.room.ForeignKey;
-import androidx.room.PrimaryKey;
-import androidx.room.TypeConverters;
-
-import com.example.fivebetserio.database.converter.BookmakerConverter;
-
 import java.util.List;
 
 //questa classe è usata da MatchAPIResponse che crea una lista di Match
-@Entity(
-        foreignKeys = @ForeignKey(
-                entity = League.class,
-                parentColumns = "key",
-                childColumns = "leagueKey",
-                onDelete = ForeignKey.CASCADE
-        )
-)
 public class Match {
-    @PrimaryKey
-    @NonNull
     private String id;
     private String sport_key;
     private String sport_title;
     private String commence_time;
     private String home_team;
     private String away_team;
-    private String leagueKey; // Chiave esterna per la relazione con League
-    @TypeConverters(BookmakerConverter.class)
     private List<Bookmaker> bookmakers;
 
-    public Match(@NonNull String id, String sport_key, String sport_title, String commence_time, String home_team, String away_team, List<Bookmaker> bookmakers, String leagueKey) {
+    public Match(String id, String sport_key, String sport_title, String commence_time, String home_team, String away_team, List<Bookmaker> bookmakers) {
         this.id = id;
         this.sport_key = sport_key;
         this.sport_title = sport_title;
@@ -40,15 +20,13 @@ public class Match {
         this.home_team = home_team;
         this.away_team = away_team;
         this.bookmakers = bookmakers;
-        this.leagueKey = leagueKey;
     }
 
-    @NonNull
     public String getId() {
         return id;
     }
-
-    public void setId(@NonNull String id) {
+//prova
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -99,8 +77,4 @@ public class Match {
     public void setBookmakers(List<Bookmaker> bookmakers) {
         this.bookmakers = bookmakers;
     }
-
-    public String getLeagueKey() {return leagueKey;}
-
-    public void setLeagueKey(String leagueKey) {this.leagueKey = leagueKey;}
 }
