@@ -29,6 +29,9 @@ import com.google.firebase.auth.FirebaseUser;
 
 import org.apache.commons.validator.routines.EmailValidator;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = MainActivity.class.getName(); //una sorta di ID per identificare questa classe
 
@@ -48,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
-    } */
+    } *///
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
 
     private boolean isEmailOk(String email){
         return EmailValidator.getInstance().isValid(email);  //libreria esterna che fa da sola il controllo per la mail

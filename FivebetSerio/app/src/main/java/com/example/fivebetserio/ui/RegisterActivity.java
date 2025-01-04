@@ -21,6 +21,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 
 import com.google.firebase.Firebase;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -30,6 +31,8 @@ import org.apache.commons.validator.routines.EmailValidator;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -40,6 +43,8 @@ public class RegisterActivity extends AppCompatActivity {
     private TextInputEditText editTextName, editTextSurname, editTextPassword, editTextEmail;
 
     FirebaseAuth mAuth;
+
+    // private FirebaseFirestore
     ProgressBar progressBar;
 
     int year,month, day;
@@ -51,6 +56,8 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         mAuth = FirebaseAuth.getInstance();
+        //db = FirebaseFirestore.getIstance();
+        // FirebaseApp.initializeApp(this);
 
         //ti ho dichiarato tutti gli editText della pagina register cosi non devi farlo, in teoria sai gia cosa contengono
         editTextName = findViewById(R.id.register_name);
@@ -139,6 +146,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 Toast.makeText(RegisterActivity.this, "Account created.",
                                         Toast.LENGTH_SHORT).show();
                                 // Passa alla pagina di Login
+                                // userDb();
                                 Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
                                 startActivity(intent);
                                 finish();
@@ -151,8 +159,19 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
 
+        /*
+        public void userDb() {
+            FirebaseUser currentUser = mAuth.getCurrentUser();
+            Map<String, Object> user = new HashMap<>();
+            user.put("id", mAuth.getCurrentUser().getUid());
+            user.put("name", editTextName.getText().toString());
+            user.put("surname", editTextSurname.getText().toString());
+            user.put("balance", 1000);
 
-        /////
+            db.collection("users")
+
+
+        } */
 
 
     }
