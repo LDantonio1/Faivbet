@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fivebetserio.database.LeaguesRoomDatabase;
 import com.example.fivebetserio.model.Match;
 import com.example.fivebetserio.R;
 
@@ -18,6 +19,7 @@ public class MatchesRecyclerAdapter extends RecyclerView.Adapter<MatchesRecycler
 
     private int layout;
     private List<Match> matchesList;
+    private String leagueKey;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView textViewHomeTeam;
@@ -78,13 +80,24 @@ public class MatchesRecyclerAdapter extends RecyclerView.Adapter<MatchesRecycler
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
-        //popolo il layout 'item_game' con i dati
-        viewHolder.getTextViewHomeTeam().setText(matchesList.get(position).getHome_team());
-        viewHolder.getTextViewAwayTeam().setText(matchesList.get(position).getAway_team());
-        viewHolder.getTextViewDate().setText(matchesList.get(position).getCommence_time());
-        viewHolder.getTextViewUno().setText("1\n" + matchesList.get(position).getBookmakers().get(0).getMarkets().get(0).getOutcomes().get(1).getPrice());
-        viewHolder.getTextViewX().setText("X\n" + matchesList.get(position).getBookmakers().get(0).getMarkets().get(0).getOutcomes().get(2).getPrice());
-        viewHolder.getTextViewDue().setText("2\n" + matchesList.get(position).getBookmakers().get(0).getMarkets().get(0).getOutcomes().get(0).getPrice());
+        Match match = matchesList.get(position);
+
+        // Popola il layout con i dati del match
+        viewHolder.getTextViewHomeTeam().setText(match.getHome_team());
+        viewHolder.getTextViewAwayTeam().setText(match.getAway_team());
+        viewHolder.getTextViewDate().setText(match.getCommence_time());
+        // Controllo se la lista dei bookmakers è vuota
+        if (match.getBookmakers() != null && !match.getBookmakers().isEmpty()) {
+            // Se la lista non è vuota, accedi ai dati
+            viewHolder.getTextViewUno().setText("1\n" + match.getBookmakers().get(0).getMarkets().get(0).getOutcomes().get(1).getPrice());
+            viewHolder.getTextViewX().setText("X\n" + match.getBookmakers().get(0).getMarkets().get(0).getOutcomes().get(2).getPrice());
+            viewHolder.getTextViewDue().setText("2\n" + match.getBookmakers().get(0).getMarkets().get(0).getOutcomes().get(0).getPrice());
+        } else {
+            // Se la lista è vuota, mostra "**" al posto del prezzo
+            viewHolder.getTextViewUno().setText("1\n**");
+            viewHolder.getTextViewX().setText("X\n**");
+            viewHolder.getTextViewDue().setText("2\n**");
+        }
     }
 
 
