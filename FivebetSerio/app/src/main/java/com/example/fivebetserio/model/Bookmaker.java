@@ -1,11 +1,16 @@
 package com.example.fivebetserio.model;
 
+import androidx.room.TypeConverters;
+
+import com.example.fivebetserio.database.converter.MarketConverter;
+
 import java.util.List;
 
 public class Bookmaker {
     private String key;
     private String title;
     private String last_update;
+    @TypeConverters(MarketConverter.class)
     private List<Market> markets;
 
     public Bookmaker(String key, String title, String last_update, List<Market> markets) {

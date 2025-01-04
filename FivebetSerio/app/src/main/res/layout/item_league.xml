@@ -5,18 +5,39 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- Titolo della Lega -->
-    <TextView
-        android:id="@+id/Title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+    <!-- Layout superiore con Titolo e Checkbox -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Titolo della Lega -->
+        <TextView
+            android:id="@+id/Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="Nome della Lega"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true" />
+
+        <!-- Checkbox a forma di stella per i preferiti -->
+        <CheckBox
+            android:id="@+id/checkBoxFavorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:button="@drawable/bookmark_selector"
+            android:focusable="false"
+            android:clickable="true"/>
+    </RelativeLayout>
 
     <!-- RecyclerView per i match della lega -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewMatches"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"/>
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp"/>
 </LinearLayout>

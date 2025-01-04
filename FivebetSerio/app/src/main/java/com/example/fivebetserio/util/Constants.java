@@ -22,4 +22,9 @@ public class Constants {
 
     public static final String FIREBASE_REALTIME_DATABASE = "https://faivbet-6776c-default-rtdb.europe-west1.firebasedatabase.app/";
     public static final String FIREBASE_USERS_COLLECTION = "users";
+    public static final List<String> LEAGUES = Arrays.asList("Serie A - Italy");
+
+
+    public static final int DATABASE_VERSION = 1;
+    public static final String SAVED_ARTICLES_DATABASE = "saved_db";
 }
