@@ -1,3 +1,5 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
     alias(libs.plugins.android.application)
     id("com.google.gms.google-services")
@@ -15,6 +17,10 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        resValue("string", "api_key", gradleLocalProperties(rootDir, providers).getProperty("api_key"))
+        resValue("bool", "debug_mode", gradleLocalProperties(rootDir, providers).getProperty("debug_mode"))
+
     }
 
     buildTypes {
@@ -36,6 +42,7 @@ dependencies {
 
     implementation(libs.tools.core)
     implementation(libs.firebase.database)
+    implementation(libs.play.services.tasks)
     annotationProcessor(libs.room.compiler)
     implementation(libs.room.runtime)
     implementation(libs.commons.validator)
@@ -47,10 +54,12 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
     implementation(libs.gson)
+    implementation(libs.converter.gson)
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.auth)
     implementation(libs.play.services.auth)
     implementation(libs.room.runtime)
     annotationProcessor(libs.room.compiler)
     implementation(libs.retrofit)
+    implementation (libs.logging.interceptor)
 }
