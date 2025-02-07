@@ -14,8 +14,8 @@ import java.util.List;
 @Entity(
         foreignKeys = @ForeignKey(
                 entity = League.class,
-                parentColumns = "key",
-                childColumns = "leagueKey",
+                parentColumns = "uid",
+                childColumns = "leagueUid",
                 onDelete = ForeignKey.CASCADE
         )
 )
@@ -28,11 +28,11 @@ public class Match {
     private String commence_time;
     private String home_team;
     private String away_team;
-    private String leagueKey; // Chiave esterna per la relazione con League
+    private long leagueUid; // Chiave esterna per la relazione con League
     @TypeConverters(BookmakerConverter.class)
     private List<Bookmaker> bookmakers;
 
-    public Match(@NonNull String id, String sport_key, String sport_title, String commence_time, String home_team, String away_team, List<Bookmaker> bookmakers, String leagueKey) {
+    public Match(@NonNull String id, String sport_key, String sport_title, String commence_time, String home_team, String away_team, List<Bookmaker> bookmakers, long leagueUid) {
         this.id = id;
         this.sport_key = sport_key;
         this.sport_title = sport_title;
@@ -40,7 +40,18 @@ public class Match {
         this.home_team = home_team;
         this.away_team = away_team;
         this.bookmakers = bookmakers;
-        this.leagueKey = leagueKey;
+        this.leagueUid = leagueUid;
+    }
+
+    public Match(Match match) {
+        this.id = match.id;
+        this.sport_key = match.sport_key;
+        this.sport_title = match.sport_title;
+        this.commence_time = match.commence_time;
+        this.home_team = match.home_team;
+        this.away_team = match.away_team;
+        this.bookmakers = match.bookmakers;
+        this.leagueUid = match.leagueUid;
     }
 
     @NonNull
@@ -100,7 +111,7 @@ public class Match {
         this.bookmakers = bookmakers;
     }
 
-    public String getLeagueKey() {return leagueKey;}
+    public long getLeagueUid() {return leagueUid;}
 
-    public void setLeagueKey(String leagueKey) {this.leagueKey = leagueKey;}
+    public void setLeagueUid(long leagueuid) {this.leagueUid = leagueuid;}
 }

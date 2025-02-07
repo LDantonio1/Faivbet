@@ -12,10 +12,14 @@ import com.example.fivebetserio.model.Match;
 import com.example.fivebetserio.database.converter.BookmakerConverter;
 import com.example.fivebetserio.database.converter.MarketConverter;
 import com.example.fivebetserio.database.converter.OutcomeConverter;
+import com.example.fivebetserio.util.Constants;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @Database(
         entities = {League.class, Match.class},
-        version = 1,
+        version = Constants.DATABASE_VERSION,
         exportSchema = false
 )
 @TypeConverters({BookmakerConverter.class, MarketConverter.class, OutcomeConverter.class})
@@ -24,6 +28,8 @@ public abstract class LeaguesRoomDatabase extends RoomDatabase {
     public abstract MatchDao matchDao();
 
     private static volatile LeaguesRoomDatabase INSTANCE;
+    public static final ExecutorService databaseWriteExecutor =
+            Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 
     public static LeaguesRoomDatabase getInstance(Context context) {
         if (INSTANCE == null) {
@@ -32,8 +38,9 @@ public abstract class LeaguesRoomDatabase extends RoomDatabase {
                     INSTANCE = Room.databaseBuilder(
                             context.getApplicationContext(),
                             LeaguesRoomDatabase.class,
-                            "app_database"
-                    ).build();
+                            Constants.SAVED_LEAGUES_DATABASE
+                    ).fallbackToDestructiveMigration()  // Cancella e ricrea il database
+                            .build();
                 }
             }
         }

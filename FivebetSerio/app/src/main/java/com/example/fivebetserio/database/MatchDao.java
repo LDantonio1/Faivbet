@@ -6,6 +6,7 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
+import com.example.fivebetserio.model.League;
 import com.example.fivebetserio.model.Match;
 
 import java.util.List;
@@ -15,7 +16,13 @@ public interface MatchDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertMatch(Match match);
 
-    @Query("SELECT * FROM `match` WHERE leagueKey = :leagueKey")
-    LiveData<List<Match>> getMatchesByLeague(String leagueKey);
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertMatchesList(List<Match> MatchesList);
+
+    @Query("SELECT * FROM `match` WHERE leagueUid = :leagueUid")
+    List<Match> getMatchesByLeague(long leagueUid);
+
+    @Query("SELECT * FROM `match`")
+    List<Match> getAllMatches();
 }
 
