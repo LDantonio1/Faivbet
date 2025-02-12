@@ -9,15 +9,20 @@ import com.example.fivebetserio.util.Constants;
 import com.example.fivebetserio.util.SharedPreferencesUtils;
 
 import java.util.List;
+/**
+ * Classe LocalLeagueDataSource per la gestione delle leghe nel database locale.
+ * *
+ * Questa classe funge da intermediario tra il database locale (DAO) e il Repository.
+ */
 
 public class LocalLeagueDataSource extends BaseLeagueLocalDataSource {
 
     private final LeagueDao leagueDAO;
     private final SharedPreferencesUtils sharedPreferencesUtil;
-    private final LeaguesRoomDatabase leaguesRoomDatabase; // Aggiungi questo campo
+    private final LeaguesRoomDatabase leaguesRoomDatabase;
 
     public LocalLeagueDataSource(LeaguesRoomDatabase leaguesRoomDatabase, SharedPreferencesUtils sharedPreferencesUtil) {
-        this.leaguesRoomDatabase = leaguesRoomDatabase;  // Inizializza l'istanza
+        this.leaguesRoomDatabase = leaguesRoomDatabase;
         this.leagueDAO = leaguesRoomDatabase.leagueDao();
         this.sharedPreferencesUtil = sharedPreferencesUtil;
     }
@@ -66,8 +71,6 @@ public class LocalLeagueDataSource extends BaseLeagueLocalDataSource {
             }
             int updatedRowsNumber = leagueDAO.updateListFavoriteLeagues(favoriteLeagues);
 
-            // It means that the update succeeded because the number of updated rows is
-            // equal to the number of the original favorite leagues
             if (updatedRowsNumber == favoriteLeagues.size()) {
                 leagueCallback.onDeleteFavoriteLeaguesSuccess(favoriteLeagues);
             } else {
@@ -82,7 +85,7 @@ public class LocalLeagueDataSource extends BaseLeagueLocalDataSource {
             List<League> allLeagues = leagueDAO.getAllLeagues();
 
             if (leaguesList != null) {
-                // Verifica se le leghe scaricate sono già nel database per preservare lo stato (es. favorite)
+                // Verifica se le leghe scaricate sono già nel database per preservarne lo stato (es. favorite)
                 for (League league : allLeagues) {
                     if (leaguesList.contains(league)) {
                         leaguesList.set(leaguesList.indexOf(league), league);

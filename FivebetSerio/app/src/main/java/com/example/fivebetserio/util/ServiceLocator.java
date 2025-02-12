@@ -27,6 +27,15 @@ import okhttp3.Request;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import okhttp3.logging.HttpLoggingInterceptor;
+/**
+ * Service Locator per la gestione delle dipendenze dell'applicazione.
+ *
+ * Responsabilità principali:
+ * - Fornire istanze singleton delle classi principali come Repository e Database.
+ *
+ * Questa classe segue il pattern Service Locator per centralizzare la creazione e il recupero delle istanze
+ * necessarie all'applicazione.
+ */
 
 public class ServiceLocator {
 

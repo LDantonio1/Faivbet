@@ -7,6 +7,9 @@ import com.example.fivebetserio.util.Constants;
 import com.example.fivebetserio.util.JSONParserUtils;
 
 import java.io.IOException;
+/**
+ * Classe MockLeagueDataSource per la simulazione del recupero delle leghe.
+ */
 
 public class MockLeagueDataSource extends BaseLeagueRemoteDataSource {
 

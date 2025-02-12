@@ -31,7 +31,7 @@ public class Constants {
     public static final String INVALID_CREDENTIALS_ERROR = "invalidCredentials";
     public static final String USER_COLLISION_ERROR = "userCollisionError";
     public static final String WEAK_PASSWORD_ERROR = "passwordIsWeak";
-
+    public static final String UNKNOWN_VIEWMODEL_CLASS = "Unknown ViewModel class";
 
     // URL di Realtime database
     public static final String FIREBASE_REALTIME_DATABASE = "https://faivbet-6776c-default-rtdb.europe-west1.firebasedatabase.app";

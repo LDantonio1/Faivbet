@@ -12,6 +12,9 @@ import com.example.fivebetserio.util.JSONParserUtils;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+/**
+ * Classe MockMatchDataSource per la simulazione del recupero dei match.
+*/
 
 public class MockMatchDataSource extends BaseMatchRemoteDataSource {
 

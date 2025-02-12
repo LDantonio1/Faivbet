@@ -6,6 +6,7 @@ import com.example.fivebetserio.database.converter.MarketConverter;
 
 import java.util.List;
 
+//classe usata per la decodifica dei dati ritornati dall'API per i match
 public class Bookmaker {
     private String key;
     private String title;

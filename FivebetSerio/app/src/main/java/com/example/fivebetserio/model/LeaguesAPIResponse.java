@@ -11,7 +11,6 @@ public class LeaguesAPIResponse {
     public LeaguesAPIResponse(List<League> leagues) {
         //con questa riga di codice filtro la lista in modo che contenga solo le leghe presenti in Constants.LEAGUES
         leagues.removeIf(league -> !Constants.LEAGUES.contains(league.getTitle()));
-        //leagues.removeIf(league -> !league.getGroup().equals("Soccer"));
 
         this.leagues = leagues;
     }

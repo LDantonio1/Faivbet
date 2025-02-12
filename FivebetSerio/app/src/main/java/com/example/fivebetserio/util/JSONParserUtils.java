@@ -16,6 +16,10 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.util.List;
 
+/**
+ * Utility per il parsing di dati JSON.
+ */
+
 public class JSONParserUtils {
     private AssetManager assetManager;
 

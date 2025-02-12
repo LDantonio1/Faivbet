@@ -12,6 +12,10 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 import retrofit2.http.Path;
 
+/**
+ * Interfaccia MatchApiService per la comunicazione con l'API remota.
+ */
+
 public interface MatchAPIService {
 
     @GET("sports/{sport_key}/odds/")

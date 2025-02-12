@@ -11,6 +11,12 @@ import com.example.fivebetserio.model.League;
 
 import java.util.List;
 
+/**
+ * Data Access Object (DAO) per la gestione delle operazioni sulle leghe nel database locale.
+ * Fornisce metodi per l'inserimento, l'aggiornamento, l'eliminazione e il recupero delle leghe.
+*
+ * Questo DAO viene utilizzato dal Repository per accedere ai dati in modo asincrono.
+ */
 @Dao
 public interface LeagueDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)

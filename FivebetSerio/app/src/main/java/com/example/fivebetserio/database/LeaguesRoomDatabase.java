@@ -17,6 +17,13 @@ import com.example.fivebetserio.util.Constants;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * Database Room per la gestione delle leghe e dei match.
+ * Fornisce l'accesso ai DAO e gestisce l'istanza del database.
+ *
+ * Viene utilizzato come fonte di dati locale per l'applicazione, permettendo il caching delle informazioni.
+ */
+
 @Database(
         entities = {League.class, Match.class},
         version = Constants.DATABASE_VERSION,

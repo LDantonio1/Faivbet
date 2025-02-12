@@ -21,11 +21,17 @@ import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+/**
+ * Adapter per la RecyclerView che gestisce l'elenco delle leghe e i relativi match.
+ * Ogni elemento della lista mostra il nome della lega, un'icona di preferenza
+ * e una RecyclerView annidata con i match corrispondenti.
+ */
+
 public class LeaguesRecyclerAdapter extends RecyclerView.Adapter<LeaguesRecyclerAdapter.ViewHolder> {
 
     private int layout;
     private List<League> leaguesList;
-    private List<Match> allMatchesList; // Lista completa di tutti i match
+    private List<Match> allMatchesList;
     private Context context;
     private LeagueViewModel leagueViewModel;
     private Executor executor;
@@ -95,10 +101,10 @@ public class LeaguesRecyclerAdapter extends RecyclerView.Adapter<LeaguesRecycler
         for (Match match : allMatchesList) {
             if (match.getLeagueUid() == leagueId) {
                 filteredMatches.add(match);
-                Log.d("LeaguesRecyclerAdapter", "Match aggiunto al filtro per la lega " + leagueId + ": " + match.getHome_team() + " vs " + match.getAway_team());
+                //Log.d("LeaguesRecyclerAdapter", "Match aggiunto al filtro per la lega " + leagueId + ": " + match.getHome_team() + " vs " + match.getAway_team());
             }
         }
-        Log.d("LeaguesRecyclerAdapter", "Trovati " + filteredMatches.size() + " match per la lega " + leagueId);
+        //Log.d("LeaguesRecyclerAdapter", "Trovati " + filteredMatches.size() + " match per la lega " + leagueId);
         return filteredMatches;
     }
 
@@ -111,7 +117,7 @@ public class LeaguesRecyclerAdapter extends RecyclerView.Adapter<LeaguesRecycler
         private final TextView textViewTitle;
         private final RecyclerView recyclerViewMatches;
         private final CheckBox favoriteCheckbox;
-        public MatchesRecyclerAdapter matchAdapter; // Mantieni un riferimento all'adapter
+        public MatchesRecyclerAdapter matchAdapter;
 
         public ViewHolder(View view) {
             super(view);
@@ -119,10 +125,10 @@ public class LeaguesRecyclerAdapter extends RecyclerView.Adapter<LeaguesRecycler
             recyclerViewMatches = view.findViewById(R.id.recyclerViewMatches);
             favoriteCheckbox = view.findViewById(R.id.checkBoxFavorite);
 
-            // Inizializza LayoutManager e Adapter UNA SOLA VOLTA
+            // Inizializza LayoutManager e Adapter
             LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false);
             recyclerViewMatches.setLayoutManager(layoutManager);
-            matchAdapter = new MatchesRecyclerAdapter(R.layout.item_match, new ArrayList<>()); // Adapter inizialmente vuoto
+            matchAdapter = new MatchesRecyclerAdapter(R.layout.item_match, new ArrayList<>());
             recyclerViewMatches.setAdapter(matchAdapter);
         }
     }

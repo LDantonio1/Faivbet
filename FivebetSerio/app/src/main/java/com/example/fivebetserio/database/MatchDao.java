@@ -10,6 +10,13 @@ import com.example.fivebetserio.model.Match;
 
 import java.util.List;
 
+/**
+ * Data Access Object (DAO) per la gestione delle operazioni sui match nel database locale.
+ * Definisce metodi per inserire, aggiornare, eliminare e recuperare i match in base a diversi criteri.
+ *
+ * Questo DAO è utilizzato dal Repository per fornire dati aggiornati in modo efficiente.
+ */
+
 @Dao
 public interface MatchDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)

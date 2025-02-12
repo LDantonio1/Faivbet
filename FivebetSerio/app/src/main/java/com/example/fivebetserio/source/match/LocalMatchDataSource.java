@@ -6,6 +6,11 @@ import com.example.fivebetserio.model.Match;
 
 import java.util.List;
 
+/**
+ * Classe LocalMatchDataSource per la gestione dei match nel database locale.
+ *
+ */
+
 public class LocalMatchDataSource extends BaseMatchLocalDataSource {
 
     private final MatchDao matchDAO;
@@ -14,11 +19,6 @@ public class LocalMatchDataSource extends BaseMatchLocalDataSource {
         this.matchDAO = leaguesRoomDatabase.matchDao();
     }
 
-    /**
-     * Gets the leagues from the local database.
-     * The method is executed with an ExecutorService defined in LeaguesRoomDatabase class
-     * because the database access cannot be executed in the main thread.
-     */
     @Override
     public void getMatches() {
         LeaguesRoomDatabase.databaseWriteExecutor.execute(() -> {

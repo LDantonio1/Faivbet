@@ -16,6 +16,11 @@ import com.example.fivebetserio.source.match.MatchCallback;
 import com.example.fivebetserio.util.Constants;
 import java.util.List;
 
+/**
+ * Classe Repository che funge da punto di accesso centrale ai dati dell'applicazione.
+ * Gestisce il recupero dei dati sia dal database locale (Room) sia dalle API remote,
+ * garantendo un'astrazione per il ViewModel e la UI.
+ */
 public class Repository implements LeagueCallback, MatchCallback {
 
     private final MutableLiveData<Result> allLeaguesMutableLiveData;

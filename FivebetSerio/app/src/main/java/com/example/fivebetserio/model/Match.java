@@ -10,7 +10,6 @@ import com.example.fivebetserio.database.converter.BookmakerConverter;
 
 import java.util.List;
 
-//questa classe è usata da MatchAPIResponse che crea una lista di Match
 @Entity(
         foreignKeys = @ForeignKey(
                 entity = League.class,

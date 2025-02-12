@@ -8,7 +8,7 @@ public abstract class Result {
     }
 
     /**
-     * Class that represents a successful action during the interaction
+     * Classes that represents a successful action during the interaction
      * with a Web Service or a local database.
      */
 

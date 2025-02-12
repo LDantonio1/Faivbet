@@ -12,6 +12,13 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Query;
 
+/**
+ * Interfaccia LeagueApiService per la comunicazione con l'API remota.
+ * Definisce i metodi per recuperare le informazioni sulle leghe disponibili.
+ *
+ * Viene utilizzata da Repository per recuperare i dati aggiornati.
+ */
+
 public interface LeagueAPIService {
 
     @GET(TOP_HEADLINES_ENDPOINT)

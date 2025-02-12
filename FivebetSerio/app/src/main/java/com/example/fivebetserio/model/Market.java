@@ -6,6 +6,8 @@ import com.example.fivebetserio.database.converter.OutcomeConverter;
 
 import java.util.List;
 
+
+//classe usata per la decodifica dei dati ritornati dall'API per i match
 public class Market {
     private String key;
     private String last_update;

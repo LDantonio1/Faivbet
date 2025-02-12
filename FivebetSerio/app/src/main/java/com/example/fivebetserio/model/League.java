@@ -9,7 +9,6 @@ import com.example.fivebetserio.util.Constants;
 import java.util.List;
 import java.util.Objects;
 
-//Questa classe è usata da LeagueAPIResponse che crea una lista di oggetti League
 @Entity
 public class League {
     @PrimaryKey(autoGenerate = true)

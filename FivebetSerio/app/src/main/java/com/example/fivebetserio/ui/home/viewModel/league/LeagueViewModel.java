@@ -6,6 +6,18 @@ import androidx.lifecycle.ViewModel;
 import com.example.fivebetserio.model.League;
 import com.example.fivebetserio.model.Result;
 import com.example.fivebetserio.repository.Repository;
+/**
+ * ViewModel per la gestione delle leghe.
+ *
+ * Responsabilità principali:
+ * - Fornire i dati delle leghe alla UI in modo reattivo.
+ * - Recuperare le leghe dal Repository, scegliendo tra database locale e API remota.
+ * - Esporre LiveData per permettere alla UI di osservare i cambiamenti dei dati.
+ * - Gestire la logica di business per il recupero e l'aggiornamento delle leghe.
+ *
+ * Questa classe segue l'architettura MVVM e consente alla UI di ottenere i dati
+ * senza interagire direttamente con il Repository.
+ */
 
 public class LeagueViewModel extends ViewModel {
 

@@ -1,5 +1,7 @@
 package com.example.fivebetserio.ui.home.viewModel.match;
 
+import static com.example.fivebetserio.util.Constants.UNKNOWN_VIEWMODEL_CLASS;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
@@ -21,6 +23,6 @@ public class MatchViewModelFactory implements ViewModelProvider.Factory {
         if (modelClass.isAssignableFrom(MatchViewModel.class)) {
             return (T) new MatchViewModel(repository);
         }
-        throw new IllegalArgumentException("Unknown ViewModel class");
+        throw new IllegalArgumentException(UNKNOWN_VIEWMODEL_CLASS);
     }
 }

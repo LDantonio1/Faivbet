@@ -10,6 +10,11 @@ import com.example.fivebetserio.R;
 import com.example.fivebetserio.model.Match;
 import java.util.List;
 
+/**
+ * Adapter per la RecyclerView che mostra la lista dei match con dettagli come squadre,
+ * data/orario e quote disponibili. Supporta l'aggiornamento dinamico dei dati.
+ */
+
 public class MatchesRecyclerAdapter extends RecyclerView.Adapter<MatchesRecyclerAdapter.ViewHolder> {
 
     private int layout;

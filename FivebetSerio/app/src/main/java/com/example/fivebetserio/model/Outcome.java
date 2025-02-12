@@ -1,5 +1,7 @@
 package com.example.fivebetserio.model;
 
+
+//classe usata per la decodifica dei dati ritornati dall'API per i match
 public class Outcome {
     private String name;
     private String price;

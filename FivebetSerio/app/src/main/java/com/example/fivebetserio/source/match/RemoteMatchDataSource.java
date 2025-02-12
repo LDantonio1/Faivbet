@@ -17,6 +17,11 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+/**
+ * Classe RemoteMatchDataSource per la gestione dei match tramite API remota.
+ *
+ * Questa classe viene utilizzata dal Repository per garantire l'accesso a dati sempre aggiornati.
+ */
 
 public class RemoteMatchDataSource extends BaseMatchRemoteDataSource {
 

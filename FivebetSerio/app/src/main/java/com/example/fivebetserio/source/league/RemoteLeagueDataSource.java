@@ -15,6 +15,11 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+/**
+ * Classe RemoteLeagueDataSource per la gestione delle leghe tramite API remota.
+ *
+ * Questa classe viene utilizzata dal Repository per ottenere dati sempre aggiornati.
+ */
 
 public class RemoteLeagueDataSource extends BaseLeagueRemoteDataSource {
 
