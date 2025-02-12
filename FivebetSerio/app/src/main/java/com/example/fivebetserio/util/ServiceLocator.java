@@ -4,6 +4,14 @@ import android.app.Application;
 
 import com.example.fivebetserio.R;
 import com.example.fivebetserio.database.LeaguesRoomDatabase;
+import com.example.fivebetserio.repository.user.IUserRepository;
+import com.example.fivebetserio.repository.user.UserRepository;
+import com.example.fivebetserio.source.user.BaseUserAuthenticationRemoteDataSource;
+import com.example.fivebetserio.source.user.BaseUserDataRemoteDataSource;
+import com.example.fivebetserio.source.user.UserAuthenticationFirebaseDataSource;
+import com.example.fivebetserio.source.user.UserFirebaseDataSource;
+import com.example.fivebetserio.util.Constants;
+import com.example.fivebetserio.util.SharedPreferencesUtils;
 import com.example.fivebetserio.repository.Repository;
 import com.example.fivebetserio.service.LeagueAPIService;
 import com.example.fivebetserio.service.MatchAPIService;
@@ -109,5 +117,19 @@ public class ServiceLocator {
         return new Repository(remoteDataSource, localDataSource, matchRemoteDataSource, matchLocalDataSource);
     }
 
+
+
+    public IUserRepository getUserRepository(Application application) {
+        SharedPreferencesUtils sharedPreferencesUtil = new SharedPreferencesUtils(application);
+
+        BaseUserAuthenticationRemoteDataSource userRemoteAuthenticationDataSource =
+                new UserAuthenticationFirebaseDataSource();
+
+        BaseUserDataRemoteDataSource userDataRemoteDataSource =
+                new UserFirebaseDataSource(sharedPreferencesUtil);
+
+        return new UserRepository(userRemoteAuthenticationDataSource,
+                userDataRemoteDataSource);
+    }
 
 }

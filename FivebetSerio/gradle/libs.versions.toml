@@ -18,6 +18,7 @@ roomRuntime = "2.6.1"
 toolsCore = "1.0.0-alpha10"
 firebaseDatabase = "21.0.0"
 playServicesTasks = "18.2.0"
+firebaseFirestore = "25.1.2"
 
 [libraries]
 commons-validator = { module = "commons-validator:commons-validator", version.ref = "commonsValidator" }
@@ -40,6 +41,7 @@ room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRunti
 tools-core = { group = "androidx.privacysandbox.tools", name = "tools-core", version.ref = "toolsCore" }
 firebase-database = { group = "com.google.firebase", name = "firebase-database", version.ref = "firebaseDatabase" }
 play-services-tasks = { group = "com.google.android.gms", name = "play-services-tasks", version.ref = "playServicesTasks" }
+firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore", version.ref = "firebaseFirestore" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

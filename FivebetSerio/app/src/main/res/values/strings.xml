@@ -21,9 +21,12 @@
     <string name="data_di_nascita">data di nascita</string>
 
     <!-- Errors -->
-    <string name="error_email_login">Check the email address</string>
-    <string name="error_password_login">The password must have at least 8 characters</string>
+    <string name="error_email_login">Email non corretta</string>
+    <string name="error_password_login">Password non corretta</string>
     <string name="error_retrieving_leagues">There was an error retrieving the leagues</string>
     <string name="error_retrieving_matches">There was an error retrieving the matches</string>
     <string name="error_no_internet">No internet connection</string>
+    <string name="error_collision_user">This email is already registered</string>
+    <string name="error_unexpected">Unexpected error</string>
+
 </resources>

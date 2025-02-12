@@ -41,7 +41,9 @@ public class Constants {
     public static final String WEAK_PASSWORD_ERROR = "passwordIsWeak";
 
 
-    public static final String FIREBASE_REALTIME_DATABASE = "https://faivbet-6776c-default-rtdb.europe-west1.firebasedatabase.app/";
+    // URL di Realtime database
+    public static final String FIREBASE_REALTIME_DATABASE = "https://faivbet-6776c-default-rtdb.europe-west1.firebasedatabase.app";
+
     public static final String FIREBASE_USERS_COLLECTION = "users";
 
 
