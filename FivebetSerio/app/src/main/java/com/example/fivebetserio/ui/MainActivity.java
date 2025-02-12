@@ -6,6 +6,7 @@ import static com.example.fivebetserio.util.Constants.INVALID_USER_ERROR;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -28,7 +29,7 @@ import com.example.fivebetserio.repository.user.IUserRepository;
 // import com.unimib.worldnews.ui.home.HomeActivity;
 import com.example.fivebetserio.ui.viewmodel.UserViewModel;
 import com.example.fivebetserio.ui.viewmodel.UserViewModelFactory;
-import com.example.fivebetserio.service.ServiceLocator;
+import com.example.fivebetserio.util.ServiceLocator;
 import com.example.fivebetserio.util.SharedPreferencesUtils;
 
 

@@ -4,15 +4,9 @@ import android.app.Application;
 
 import com.example.fivebetserio.R;
 import com.example.fivebetserio.database.LeaguesRoomDatabase;
+import com.example.fivebetserio.repository.Repository;
 import com.example.fivebetserio.repository.user.IUserRepository;
 import com.example.fivebetserio.repository.user.UserRepository;
-import com.example.fivebetserio.source.user.BaseUserAuthenticationRemoteDataSource;
-import com.example.fivebetserio.source.user.BaseUserDataRemoteDataSource;
-import com.example.fivebetserio.source.user.UserAuthenticationFirebaseDataSource;
-import com.example.fivebetserio.source.user.UserFirebaseDataSource;
-import com.example.fivebetserio.util.Constants;
-import com.example.fivebetserio.util.SharedPreferencesUtils;
-import com.example.fivebetserio.repository.Repository;
 import com.example.fivebetserio.service.LeagueAPIService;
 import com.example.fivebetserio.service.MatchAPIService;
 import com.example.fivebetserio.source.league.BaseLeagueLocalDataSource;
@@ -25,11 +19,18 @@ import com.example.fivebetserio.source.match.BaseMatchRemoteDataSource;
 import com.example.fivebetserio.source.match.LocalMatchDataSource;
 import com.example.fivebetserio.source.match.MockMatchDataSource;
 import com.example.fivebetserio.source.match.RemoteMatchDataSource;
+import com.example.fivebetserio.source.user.BaseUserAuthenticationRemoteDataSource;
+import com.example.fivebetserio.source.user.BaseUserDataRemoteDataSource;
+import com.example.fivebetserio.source.user.UserAuthenticationFirebaseDataSource;
+import com.example.fivebetserio.source.user.UserFirebaseDataSource;
+import com.example.fivebetserio.util.Constants;
+import com.example.fivebetserio.util.SharedPreferencesUtils;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 
 public class ServiceLocator {
@@ -116,7 +117,6 @@ public class ServiceLocator {
 
         return new Repository(remoteDataSource, localDataSource, matchRemoteDataSource, matchLocalDataSource);
     }
-
 
 
     public IUserRepository getUserRepository(Application application) {

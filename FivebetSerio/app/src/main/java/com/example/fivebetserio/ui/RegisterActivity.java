@@ -11,7 +11,7 @@ import android.view.View;
 
 import com.example.fivebetserio.model.Result;
 import com.example.fivebetserio.model.User;
-import com.example.fivebetserio.service.ServiceLocator;
+import com.example.fivebetserio.util.ServiceLocator;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.example.fivebetserio.repository.user.IUserRepository;
