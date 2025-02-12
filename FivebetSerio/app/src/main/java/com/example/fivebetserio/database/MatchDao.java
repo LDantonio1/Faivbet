@@ -1,12 +1,11 @@
 package com.example.fivebetserio.database;
 
-import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Update;
 
-import com.example.fivebetserio.model.League;
 import com.example.fivebetserio.model.Match;
 
 import java.util.List;
@@ -19,10 +18,16 @@ public interface MatchDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertMatchesList(List<Match> MatchesList);
 
-    @Query("SELECT * FROM `match` WHERE leagueUid = :leagueUid")
-    List<Match> getMatchesByLeague(long leagueUid);
+    @Query("SELECT * FROM `match` WHERE leagueUid = :leagueId")
+    List<Match> getMatchesForLeague(long leagueId);
 
     @Query("SELECT * FROM `match`")
     List<Match> getAllMatches();
+
+    @Query("SELECT * FROM `match` WHERE id = :id")
+    Match getMatch(String id);
+
+    @Update
+    int updateMatch(Match match);
 }
 

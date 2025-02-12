@@ -1,15 +1,27 @@
-package com.example.fivebetserio.service;
+package com.example.fivebetserio.util;
 
 import android.app.Application;
 
+import com.example.fivebetserio.R;
 import com.example.fivebetserio.database.LeaguesRoomDatabase;
-import com.example.fivebetserio.util.Constants;
+import com.example.fivebetserio.repository.Repository;
+import com.example.fivebetserio.service.LeagueAPIService;
+import com.example.fivebetserio.service.MatchAPIService;
+import com.example.fivebetserio.source.league.BaseLeagueLocalDataSource;
+import com.example.fivebetserio.source.league.BaseLeagueRemoteDataSource;
+import com.example.fivebetserio.source.league.LocalLeagueDataSource;
+import com.example.fivebetserio.source.league.MockLeagueDataSource;
+import com.example.fivebetserio.source.league.RemoteLeagueDataSource;
+import com.example.fivebetserio.source.match.BaseMatchLocalDataSource;
+import com.example.fivebetserio.source.match.BaseMatchRemoteDataSource;
+import com.example.fivebetserio.source.match.LocalMatchDataSource;
+import com.example.fivebetserio.source.match.MockMatchDataSource;
+import com.example.fivebetserio.source.match.RemoteMatchDataSource;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 
 public class ServiceLocator {
@@ -70,5 +82,32 @@ public class ServiceLocator {
     public LeaguesRoomDatabase getLeaguesDB(Application application) {
         return LeaguesRoomDatabase.getInstance(application);
     }
+
+    public LeaguesRoomDatabase getMatchDB(Application application) {
+        return LeaguesRoomDatabase.getInstance(application);
+    }
+
+    public Repository getRepository(Application application, boolean debugMode) {
+        BaseLeagueRemoteDataSource remoteDataSource;
+        BaseLeagueLocalDataSource localDataSource;
+        BaseMatchRemoteDataSource matchRemoteDataSource;
+        BaseMatchLocalDataSource matchLocalDataSource;
+        SharedPreferencesUtils sharedPreferencesUtil = new SharedPreferencesUtils(application);
+
+        if (debugMode) {
+            JSONParserUtils jsonParserUtil = new JSONParserUtils(application.getAssets());
+            remoteDataSource = new MockLeagueDataSource(jsonParserUtil);
+            matchRemoteDataSource = new MockMatchDataSource(jsonParserUtil);
+        } else {
+            remoteDataSource = new RemoteLeagueDataSource(application.getString(R.string.api_key));
+            matchRemoteDataSource = new RemoteMatchDataSource(application.getString(R.string.api_key));
+        }
+
+        localDataSource = new LocalLeagueDataSource(getLeaguesDB(application), sharedPreferencesUtil);
+        matchLocalDataSource = new LocalMatchDataSource(getMatchDB(application));
+
+        return new Repository(remoteDataSource, localDataSource, matchRemoteDataSource, matchLocalDataSource);
+    }
+
 
 }

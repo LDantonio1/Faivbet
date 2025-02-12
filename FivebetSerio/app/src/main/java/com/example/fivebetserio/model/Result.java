@@ -20,6 +20,17 @@ public abstract class Result {
             return leaguesAPIResponse;
         }
     }
+
+    public static final class MatchSuccess extends Result {
+        private final MatchesAPIResponse matchesAPIResponse;
+        public MatchSuccess(MatchesAPIResponse matchesAPIResponse) {
+            this.matchesAPIResponse = matchesAPIResponse;
+        }
+        public MatchesAPIResponse getData() {
+            return matchesAPIResponse;
+        }
+    }
+
     /**
      * Class that represents an error occurred during the interaction
      * with a Web Service or a local database.
