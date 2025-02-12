@@ -204,8 +204,4 @@ public class RegisterActivity extends AppCompatActivity {
         return password.length() > 7;
     }
 
-    //cercherò qualche libreria per fare in controllo dell'età, si potrebbe fare a mano ma non mi piace troppo
-    private boolean isDateOk(){
-        return false;
-    }
 }

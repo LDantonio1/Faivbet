@@ -66,7 +66,8 @@
         app:layout_constraintEnd_toEndOf="@id/guideline2"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="40dp"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        style="@style/CustomTextInputLayout">
 
 
         <com.google.android.material.textfield.TextInputEditText
@@ -89,7 +90,8 @@
         app:layout_constraintEnd_toEndOf="@id/guideline2"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="40dp"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        style="@style/CustomTextInputLayout">
 
 
         <com.google.android.material.textfield.TextInputEditText
@@ -112,42 +114,24 @@
 
         <Button
             android:id="@+id/login_Button"
+            style="@style/CustomButtonMain"
             android:layout_marginEnd="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintWidth="200dp"
             android:text="@string/Login"
-            android:textColor="@color/black"
-            android:backgroundTint="#95f94140"
             app:layout_constraintTop_toBottomOf="@id/textFieldPassword"
             app:layout_constraintStart_toStartOf="@id/guideline"
             app:layout_constraintEnd_toEndOf="@id/guideline2"
-            />
-
-        <ImageButton
-            android:id="@+id/loginGoogle_Button"
-            android:paddingTop="3dp"
-            android:paddingBottom="3dp"
-            android:layout_marginStart="10dp"
-            android:layout_width="80dp"
-            android:layout_height="40dp"
-            app:layout_constraintTop_toBottomOf="@id/textFieldPassword"
-            app:layout_constraintStart_toStartOf="@id/guideline"
-            app:layout_constraintEnd_toEndOf="@id/guideline2"
-            android:src="@drawable/gicon"
-            android:scaleType="fitCenter"
-            android:contentDescription="Button with image"
-            android:background="@drawable/rounded_button"
             />
     </LinearLayout>
 
     <Button
         android:id="@+id/register_Button"
+        style="@style/CustomButtonMain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintWidth="120dp"
-        android:textColor="@color/black"
-        android:backgroundTint="#95f94140"
         android:text="@string/Registrati"
         android:layout_margin="30dp"
         app:layout_constraintTop_toBottomOf="@id/button_layout"

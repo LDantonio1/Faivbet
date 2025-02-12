@@ -1,29 +1,42 @@
-<?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView android:id="@+id/card"
+<com.google.android.material.card.MaterialCardView
+    android:id="@+id/card"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="148dp"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:elevation="0dp"
-    android:background="#00000000"
-    app:strokeWidth="0dp"
     android:clickable="true"
     android:focusable="true"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="16dp"
-    app:cardBackgroundColor="@color/white"
-    app:cardElevation="8dp"
     android:layout_margin="16dp">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="horizontal"
+        android:padding="7dp">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <!-- TextView per la data -->
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="**-**  **:**"
+                android:layout_marginStart="4dp"/>
+
+            <!-- Linea orizzontale -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#E0E0E0"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"/>
+
+            <!-- TextView per la squadra di casa -->
             <TextView
                 android:id="@+id/homeTeam"
                 android:layout_width="wrap_content"
@@ -32,6 +45,7 @@
                 android:layout_marginStart="5dp"
                 android:text="***"/>
 
+            <!-- TextView per la squadra ospite -->
             <TextView
                 android:id="@+id/awayTeam"
                 android:layout_width="wrap_content"
@@ -41,90 +55,42 @@
                 android:text="***"/>
         </LinearLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#E0E0E0"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="8dp" />
-
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <ImageView
-                android:id="@+id/clockImage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/orologio"
-            />
-
-
-            <TextView
-                android:id="@+id/date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:text="**-**-****  **:**"/>
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#E0E0E0"
-            android:layout_marginTop="2dp"/>
-
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="center">
+            android:gravity="center"
+            android:paddingTop="24dp">
 
             <!-- Pulsante per quota1 -->
             <Button
                 android:id="@+id/quota1"
-                android:layout_width="wrap_content"
-                android:layout_height="45dp"
+                style="@style/MyCustomButton"
+                android:layout_width="50dp"
+                android:layout_height="42dp"
                 android:layout_weight="1"
                 android:text="**"
-                android:textColor="@android:color/white"
-                android:autoSizeTextType="uniform"
-                android:backgroundTint="#95f94140"
-                android:layout_margin="4dp"
-                android:padding="2dp" />
+                android:autoSizeTextType="uniform" />
 
             <!-- Pulsante per quota2 -->
             <Button
                 android:id="@+id/quota2"
-                android:layout_width="wrap_content"
-                android:layout_height="45dp"
+                style="@style/MyCustomButton"
+                android:layout_width="50dp"
+                android:layout_height="42dp"
                 android:layout_weight="1"
                 android:text="**"
-                android:textColor="@android:color/white"
-                android:autoSizeTextType="uniform"
-                android:backgroundTint="#95f94140"
-                android:layout_margin="4dp"
-                android:padding="2dp" />
+                android:autoSizeTextType="uniform" />
 
             <!-- Pulsante per quota3 -->
             <Button
                 android:id="@+id/quota3"
-                android:layout_width="wrap_content"
-                android:layout_height="45dp"
+                style="@style/MyCustomButton"
+                android:layout_width="50dp"
+                android:layout_height="42dp"
                 android:layout_weight="1"
                 android:text="**"
-                android:textColor="@android:color/white"
-                android:autoSizeTextType="uniform"
-                android:backgroundTint="#95f94140"
-                android:layout_margin="4dp"
-                android:padding="2dp" />
-
+                android:autoSizeTextType="uniform" />
         </LinearLayout>
-
-
     </LinearLayout>
-
 </com.google.android.material.card.MaterialCardView>
