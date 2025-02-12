@@ -1,10 +1,8 @@
 package com.example.fivebetserio.repository;
 
 import static com.example.fivebetserio.util.Constants.FRESH_TIMEOUT;
-import static com.example.fivebetserio.util.Constants.LEAGUES;
 
 import android.app.Application;
-import android.app.usage.ConfigurationStats;
 import android.util.Log;
 
 import androidx.annotation.NonNull;

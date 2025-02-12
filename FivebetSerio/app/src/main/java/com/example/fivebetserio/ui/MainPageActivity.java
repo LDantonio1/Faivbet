@@ -1,6 +1,7 @@
 package com.example.fivebetserio.ui;
 
-import android.annotation.SuppressLint;
+import static com.example.fivebetserio.util.Constants.FIREBASE_REALTIME_DATABASE;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,8 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fivebetserio.R;
 import com.example.fivebetserio.adapter.LeaguesRecyclerAdapter;
-import com.example.fivebetserio.database.LeagueDao;
-import com.example.fivebetserio.database.LeaguesRoomDatabase;
 import com.example.fivebetserio.database.MatchDao;
 import com.example.fivebetserio.model.League;
 import com.example.fivebetserio.model.Match;
@@ -21,11 +20,14 @@ import com.example.fivebetserio.repository.LeagueAPIRepository;
 import com.example.fivebetserio.repository.LeagueMockRepository;
 import com.example.fivebetserio.service.ServiceLocator;
 import com.example.fivebetserio.util.Constants;
-import com.example.fivebetserio.util.JSONParserUtils;
 import com.example.fivebetserio.util.ResponseCallback;
 import com.example.fivebetserio.util.SharedPreferencesUtils;
-import com.example.fivebetserio.util.NetworkUtil;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,7 +78,55 @@ public class MainPageActivity extends AppCompatActivity implements ResponseCallb
         /*if (!NetworkUtil.isInternetAvailable(this)) {
             noInternetView.setVisibility(View.VISIBLE);
         }*/
+
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        if (currentUser != null) {
+            // Aggiungi una nuova lega alla lista dell'utente dopo il login
+            toggleFavoriteLeague(currentUser);
+        }
     }
+
+
+    // metodo di prova per vedere se viene aggiornata la lista al db
+    public void toggleFavoriteLeague(FirebaseUser currentUser) {
+        if (currentUser == null) return;
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance(FIREBASE_REALTIME_DATABASE);
+        DatabaseReference leaguesRef = database.getReference("users")
+                .child(currentUser.getUid())
+                .child("favoriteLeagues");
+
+        // Recupera la lista attuale
+        leaguesRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful() && task.getResult().exists()) {
+                List<String> favoriteLeagues = new ArrayList<>();
+
+                for (DataSnapshot ds : task.getResult().getChildren()) {
+                    String league = ds.getValue(String.class);
+                    favoriteLeagues.add(league);
+                }
+
+                // Se la lega è già presente, la rimuove. Altrimenti, la aggiunge
+                if (favoriteLeagues.contains("serie A")) {
+                    favoriteLeagues.remove("serie A");
+                    Log.d("ToggleLeague", "Campionato rimosso: ");
+                } else {
+                    favoriteLeagues.add("serie A");
+                    Log.d("ToggleLeague", "Campionato aggiunto: ");
+                }
+
+                // Aggiorna il database con la lista modificata
+                leaguesRef.setValue(favoriteLeagues)
+                        .addOnSuccessListener(aVoid -> Log.d("ToggleLeague", "Lista aggiornata con successo"))
+                        .addOnFailureListener(e -> Log.e("ToggleLeague", "Errore nell'aggiornamento", e));
+            } else {
+                Log.e("ToggleLeague", "Errore nel recupero delle leghe", task.getException());
+            }
+        });
+    }
+
+
 
     @Override
     public void onSuccess(List<League> leagueList, long lastUpdate) {

@@ -1,53 +1,51 @@
 package com.example.fivebetserio.ui;
 
+import static com.example.fivebetserio.util.Constants.USER_COLLISION_ERROR;
+import static com.example.fivebetserio.util.Constants.WEAK_PASSWORD_ERROR;
+
+import android.os.Bundle;
+
+import androidx.lifecycle.ViewModelProvider;
+// import androidx.navigation.Navigation;
+import android.view.View;
+
+import com.example.fivebetserio.model.Result;
+import com.example.fivebetserio.model.User;
+import com.example.fivebetserio.service.ServiceLocator;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputEditText;
+import com.example.fivebetserio.repository.user.IUserRepository;
+// import com.example.fivebetserio.home.viewmodel.ArticleViewModelFactory;
+import com.example.fivebetserio.ui.viewmodel.UserViewModel;
+import com.example.fivebetserio.ui.viewmodel.UserViewModelFactory;
+
+
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
-
 import com.example.fivebetserio.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputEditText;
-
-import com.google.firebase.Firebase;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import org.apache.commons.validator.routines.EmailValidator;
 
-import java.time.LocalDate;
-import java.time.Period;
 import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private EditText editTextDate;
-
-    public static final String TAG = MainActivity.class.getName();
+    private UserViewModel userViewModel;
 
     private TextInputEditText editTextName, editTextSurname, editTextPassword, editTextEmail;
 
-    FirebaseAuth mAuth;
+    private EditText editTextDate;
 
-    // private FirebaseFirestore
     ProgressBar progressBar;
 
-    int year,month, day;
+    int year, month, day;
+
+
 
 
     @Override
@@ -55,9 +53,11 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        mAuth = FirebaseAuth.getInstance();
-        //db = FirebaseFirestore.getIstance();
-        // FirebaseApp.initializeApp(this);
+        IUserRepository userRepository = ServiceLocator.getInstance().getUserRepository(getApplication());
+
+        userViewModel = new ViewModelProvider(this, new UserViewModelFactory(userRepository)).get(UserViewModel.class);
+        userViewModel.setAuthenticationError(false);
+
 
         //ti ho dichiarato tutti gli editText della pagina register cosi non devi farlo, in teoria sai gia cosa contengono
         editTextName = findViewById(R.id.register_name);
@@ -107,7 +107,6 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
 
-
         //controlla se la password e la mail sono valide e controlla che l'utente sia maggiorenne
         registerButton.setOnClickListener(view -> {
             progressBar.setVisibility(View.VISIBLE);
@@ -136,44 +135,41 @@ public class RegisterActivity extends AppCompatActivity {
                 return;
             }
 
-            // Se tutti i controlli passano
-            mAuth.createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            progressBar.setVisibility(View.GONE);
-                            if (task.isSuccessful()) {
-                                Toast.makeText(RegisterActivity.this, "Account created.",
-                                        Toast.LENGTH_SHORT).show();
-                                // Passa alla pagina di Login
-                                // userDb();
-                                Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-                                startActivity(intent);
-                                finish();
-                            } else {
-                                Toast.makeText(RegisterActivity.this, "Authentication failed.",
-                                        Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
+            if (!userViewModel.isAuthenticationError()) {
+                userViewModel.getUserMutableLiveData(email, password, false).observe(this, result -> {
+                    progressBar.setVisibility(View.GONE);
+                    if (result.isSuccess()) {
+                        User user = ((Result.UserSuccess) result).getData();
+                        userViewModel.setAuthenticationError(false);
+
+                        // Navigazione all'Activity successiva
+                        Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        userViewModel.setAuthenticationError(true);
+                        Snackbar.make(findViewById(android.R.id.content),
+                                getErrorMessage(((Result.Error) result).getMessage()),
+                                Snackbar.LENGTH_SHORT).show();
+                    }
+                });
+            } else {
+                userViewModel.getUser(email, password, false);
+            }
         });
+    }
 
+    private boolean isEmailOk(String email){
+        return EmailValidator.getInstance().isValid(email);  //libreria esterna che fa da sola il controllo per la mail
+    }
 
-        /*
-        public void userDb() {
-            FirebaseUser currentUser = mAuth.getCurrentUser();
-            Map<String, Object> user = new HashMap<>();
-            user.put("id", mAuth.getCurrentUser().getUid());
-            user.put("name", editTextName.getText().toString());
-            user.put("surname", editTextSurname.getText().toString());
-            user.put("balance", 1000);
+    private boolean isPasswordOk(String password){
+        return password.length() > 7;
+    }
 
-            db.collection("users")
-
-
-        } */
-
-
+    //cercherò qualche libreria per fare in controllo dell'età, si potrebbe fare a mano ma non mi piace troppo
+    private boolean isDateOk(){
+        return false;
     }
 
     //classe per controllare se l'utente è maggiorenne
@@ -196,16 +192,16 @@ public class RegisterActivity extends AppCompatActivity {
         return age >= 18;
     }
 
-    private boolean isEmailOk(String email){
-        return EmailValidator.getInstance().isValid(email);  //libreria esterna che fa da sola il controllo per la mail
+
+    private String getErrorMessage(String message) {
+        switch (message) {
+            case WEAK_PASSWORD_ERROR:
+                return getString(R.string.error_password_login);
+            case USER_COLLISION_ERROR:
+                return getString(R.string.error_collision_user);
+            default:
+                return getString(R.string.error_unexpected);
+        }
     }
 
-    private boolean isPasswordOk(String password){
-        return password.length() > 7;
-    }
-
-    //cercherò qualche libreria per fare in controllo dell'età, si potrebbe fare a mano ma non mi piace troppo
-    private boolean isDateOk(){
-        return false;
-    }
 }

@@ -3,8 +3,6 @@ package com.example.fivebetserio.repository;
 import android.app.Application;
 import android.util.Log;
 
-import androidx.annotation.NonNull;
-
 import com.example.fivebetserio.R;
 import com.example.fivebetserio.database.LeagueDao;
 import com.example.fivebetserio.database.LeaguesRoomDatabase;
@@ -12,7 +10,6 @@ import com.example.fivebetserio.database.MatchDao;
 import com.example.fivebetserio.model.League;
 import com.example.fivebetserio.model.LeaguesAPIResponse;
 import com.example.fivebetserio.model.Match;
-import com.example.fivebetserio.model.MatchesAPIResponse;
 import com.example.fivebetserio.service.ServiceLocator;
 import com.example.fivebetserio.util.JSONParserUtils;
 import com.example.fivebetserio.util.Constants;
