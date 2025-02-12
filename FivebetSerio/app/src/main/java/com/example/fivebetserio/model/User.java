@@ -35,8 +35,4 @@ public class User {
         return idToken;
     }
 
-    public void setIdToken(String idToken) {
-        this.idToken = idToken;
-    }
-
 }

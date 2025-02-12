@@ -1,7 +1,5 @@
 package com.example.fivebetserio.repository;
 
-import android.util.Log;
-
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.fivebetserio.model.League;
@@ -16,10 +14,7 @@ import com.example.fivebetserio.source.match.BaseMatchLocalDataSource;
 import com.example.fivebetserio.source.match.BaseMatchRemoteDataSource;
 import com.example.fivebetserio.source.match.MatchCallback;
 import com.example.fivebetserio.util.Constants;
-
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Repository implements LeagueCallback, MatchCallback {
 

@@ -1,8 +1,6 @@
 package com.example.fivebetserio.repository.user;
 
-
 import androidx.lifecycle.MutableLiveData;
-
 import com.example.fivebetserio.model.Result;
 import com.example.fivebetserio.model.User;
 import com.example.fivebetserio.source.user.BaseUserAuthenticationRemoteDataSource;
@@ -10,12 +8,9 @@ import com.example.fivebetserio.source.user.BaseUserDataRemoteDataSource;
 
 public class UserRepository implements IUserRepository, UserResponseCallback{
 
-    private static final String TAG = UserRepository.class.getSimpleName();
-
     private final BaseUserAuthenticationRemoteDataSource userRemoteDataSource;
     private final BaseUserDataRemoteDataSource userDataRemoteDataSource;
     private final MutableLiveData<Result> userMutableLiveData;
-    private final MutableLiveData<Result> userPreferencesMutableLiveData;
 
     public UserRepository(BaseUserAuthenticationRemoteDataSource userRemoteDataSource,
                           BaseUserDataRemoteDataSource userDataRemoteDataSource
@@ -23,7 +18,6 @@ public class UserRepository implements IUserRepository, UserResponseCallback{
         this.userRemoteDataSource = userRemoteDataSource;
         this.userDataRemoteDataSource = userDataRemoteDataSource;
         this.userMutableLiveData = new MutableLiveData<>();
-        this.userPreferencesMutableLiveData = new MutableLiveData<>();
         this.userRemoteDataSource.setUserResponseCallback(this);
         this.userDataRemoteDataSource.setUserResponseCallback(this);
     }
@@ -31,69 +25,54 @@ public class UserRepository implements IUserRepository, UserResponseCallback{
     @Override
     public MutableLiveData<Result> getUser(String email, String password, boolean isUserRegistered) {
         if (isUserRegistered) {
-            signIn(email, password);
+            signIn(email, password); // Effettua il login se l'utente è registrato
         } else {
-            signUp(email, password);
+            signUp(email, password); // Registra un nuovo utente
         }
         return userMutableLiveData;
     }
 
-    @Override
+    @Override // Effettua il logout
     public MutableLiveData<Result> logout() {
         userRemoteDataSource.logout();
         return userMutableLiveData;
     }
 
-    @Override
+    @Override // Restituisce l'utente attualmente loggato
     public User getLoggedUser() {
         return userRemoteDataSource.getLoggedUser();
     }
 
-    @Override
+    @Override // Registra un nuovo utente
     public void signUp(String email, String password) {
         userRemoteDataSource.signUp(email, password);
     }
 
-    @Override
+    @Override // Effettua il login
     public void signIn(String email, String password) {
         userRemoteDataSource.signIn(email, password);
     }
 
-    @Override
-    public void saveUserPreferences() {
-
-    }
-
-    @Override
+    @Override // Salva i dati dell'utente autenticato
     public void onSuccessFromAuthentication(User user) {
         if (user != null) {
             userDataRemoteDataSource.saveUserData(user);
         }
     }
 
-    @Override
+    @Override // Notifica un errore di autenticazione
     public void onFailureFromAuthentication(String message) {
         Result.Error result = new Result.Error(message);
         userMutableLiveData.postValue(result);
     }
 
-    @Override
+    @Override // Notifica il successo nel recupero dati utente
     public void onSuccessFromRemoteDatabase(User user) {
         Result.UserSuccess result = new Result.UserSuccess(user);
         userMutableLiveData.postValue(result);
     }
 
-    @Override
-    public void onSuccessFromRemoteDatabase() {
-
-    }
-
-    @Override
-    public void onSuccessFromGettingUserPreferences() {
-        userPreferencesMutableLiveData.postValue(new Result.UserSuccess(null));
-    }
-
-    @Override
+    @Override // Notifica un errore nel recupero dati utente
     public void onFailureFromRemoteDatabase(String message) {
         Result.Error result = new Result.Error(message);
         userMutableLiveData.postValue(result);
@@ -101,6 +80,6 @@ public class UserRepository implements IUserRepository, UserResponseCallback{
 
     @Override
     public void onSuccessLogout() {
-
+       // Metodo vuoto, da implementare negli sviluppi futuri per notificare il logout
     }
 }
