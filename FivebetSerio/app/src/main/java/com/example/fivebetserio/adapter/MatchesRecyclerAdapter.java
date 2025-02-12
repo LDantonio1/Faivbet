@@ -46,7 +46,7 @@ public class MatchesRecyclerAdapter extends RecyclerView.Adapter<MatchesRecycler
         Match match = matchesList.get(position);
         viewHolder.textViewHomeTeam.setText(match.getHome_team());
         viewHolder.textViewAwayTeam.setText(match.getAway_team());
-        viewHolder.textViewDate.setText(match.getCommence_time());
+        viewHolder.textViewDate.setText(formatDate(match.getCommence_time()));
 
         if (match.getBookmakers() != null && !match.getBookmakers().isEmpty()) {
             if (match.getBookmakers().get(0).getMarkets() != null && !match.getBookmakers().get(0).getMarkets().isEmpty() &&
@@ -74,5 +74,17 @@ public class MatchesRecyclerAdapter extends RecyclerView.Adapter<MatchesRecycler
     public void setMatchesList(List<Match> matches) {
         this.matchesList = matches;
         notifyDataSetChanged();
+    }
+
+    public static String formatDate(String date) {
+
+        // Estrai la data (AAAA-MM-GG)
+        String day = date.substring(8, 10);   // "13"
+        String month = date.substring(5, 7); // "12"
+
+        // Estrai l'orario (HH:mm)
+        String time = date.substring(11, 16); // "19:45"
+
+        return day + "-" + month + " " + time; // Formato: "GG-MM HH:mm"
     }
 }
