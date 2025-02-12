@@ -93,7 +93,6 @@ public class MainActivity extends AppCompatActivity {
 
         Button loginButton = findViewById(R.id.login_Button); // dichiaro una variabile collegata al bottone login
         Button registerButton = findViewById(R.id.register_Button);
-        ImageButton loginGoogleButton = findViewById(R.id.loginGoogle_Button);
 
         loginButton.setOnClickListener(v -> {
             String email = editTextEmail.getText().toString();

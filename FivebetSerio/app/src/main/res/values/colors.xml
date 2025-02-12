@@ -2,4 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="salmon">#FF6A69</color>
+    <color name="card_background">#FCFCFC</color>
+    <color name="boxStrokeColor">#938f94</color>
+    <color name="backgroundColor">#fff7fe</color>
 </resources>

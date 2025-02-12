@@ -1,9 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.FivebetSerio" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.LightTheme" parent="Theme.Material3.Light.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/salmon</item>
+        <item name="materialCardViewStyle">@style/MyCardStyle</item>
     </style>
 
-    <style name="Theme.FivebetSerio" parent="Base.Theme.FivebetSerio" />
+    <style name="Theme.LightTheme" parent="Base.Theme.LightTheme" />
 </resources>
