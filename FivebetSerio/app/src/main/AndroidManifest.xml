@@ -19,7 +19,7 @@
             android:name=".ui.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.MainPageActivity"
+            android:name=".ui.home.MainPageActivity"
             android:exported="false" />
         <activity
             android:name=".ui.Layout"
