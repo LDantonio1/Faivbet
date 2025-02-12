@@ -11,7 +11,7 @@ public class Constants {
     //in questo array specifico (in modo statico) quali campionati mostrare
     //un potenziale sviluppo futuro è poter mostrare tutti i camoionati o far scegliere all'utente una lista di camoionati da vadere
     //lista completa: ("Primera División - Argentina", "A-League", "Belgium First Div", "Championship", "EFL Cup", "League 1", "League 2", "EPL", "FA Cup", "FIFA World Cup Winner", "Ligue 1 - France", "Ligue 2 - France", "Bundesliga - Germany", "Bundesliga 2 - Germany", "3. Liga - Germany", "Super League - Greece", "Serie A - Italy", "Serie B - Italy", "League of Ireland", "Liga MX", "Dutch Eredivisie", "Ekstraklasa - Poland", "Primeira Liga - Portugal", "La Liga - Spain", "La Liga 2 - Spain", "Premiership - Scotland", "Swiss Superleague", "Turkey Super League", "UEFA Europa Conference League", "UEFA Europa League")
-    public static final List<String> LEAGUES = Arrays.asList("Bundesliga - Germany", "Serie A - Italy");
+    public static final List<String> LEAGUES = Arrays.asList("Belgium First Div", "Bundesliga - Germany", "Serie A - Italy");
 
     public static final int FRESH_TIMEOUT = 1000 * 60; // 1 minute in milliseconds
 
@@ -30,7 +30,7 @@ public class Constants {
     public static final String SHARED_PREFERENCES_FILENAME = "com.example.Fivebet.preferences";
     public static final String SHARED_PREFERENCES_COUNTRY_OF_INTEREST = "country_of_interest";
     public static final String SHARED_PREFERENCES_CATEGORIES_OF_INTEREST = "categories_of_interest";
-    public static final String SHARED_PREFERENECES_LAST_UPDATE = "last_update";
+    public static final String SHARED_PREFERENCES_LAST_UPDATE = "last_update";
 
     public static final String RETROFIT_ERROR = "retrofit_error";
     public static final String API_KEY_ERROR = "api_key_error";
@@ -41,7 +41,9 @@ public class Constants {
     public static final String WEAK_PASSWORD_ERROR = "passwordIsWeak";
 
 
-    public static final String FIREBASE_REALTIME_DATABASE = "https://faivbet-6776c-default-rtdb.europe-west1.firebasedatabase.app/";
+    // URL di Realtime database
+    public static final String FIREBASE_REALTIME_DATABASE = "https://faivbet-6776c-default-rtdb.europe-west1.firebasedatabase.app";
+
     public static final String FIREBASE_USERS_COLLECTION = "users";
 
 

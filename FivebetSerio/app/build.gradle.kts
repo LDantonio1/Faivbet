@@ -38,10 +38,20 @@ android {
     }
 }
 
+configurations.all {
+    exclude(group = "com.google.protobuf", module = "protobuf-java")
+    exclude(group = "com.google.protobuf", module = "protobuf-lite")
+}
+
 dependencies {
 
+
+    implementation(platform("com.google.firebase:firebase-bom:33.8.0"))
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-database")
+    implementation("com.google.firebase:firebase-firestore")
+
     implementation(libs.tools.core)
-    implementation(libs.firebase.database)
     implementation(libs.play.services.tasks)
     annotationProcessor(libs.room.compiler)
     implementation(libs.room.runtime)
@@ -55,11 +65,8 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
     implementation(libs.gson)
     implementation(libs.converter.gson)
-    implementation(platform(libs.firebase.bom))
-    implementation(libs.firebase.auth)
     implementation(libs.play.services.auth)
     implementation(libs.room.runtime)
-    annotationProcessor(libs.room.compiler)
     implementation(libs.retrofit)
     implementation (libs.logging.interceptor)
 }

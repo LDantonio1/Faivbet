@@ -4,10 +4,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.fivebetserio.R;
 import com.example.fivebetserio.model.Match;
-import java.util.ArrayList;
 import java.util.List;
 
 public class MatchesRecyclerAdapter extends RecyclerView.Adapter<MatchesRecyclerAdapter.ViewHolder> {
@@ -17,7 +17,7 @@ public class MatchesRecyclerAdapter extends RecyclerView.Adapter<MatchesRecycler
 
     public MatchesRecyclerAdapter(int layout, List<Match> matchesList) {
         this.layout = layout;
-        this.matchesList = new ArrayList<>(matchesList);
+        this.matchesList = matchesList;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -34,6 +34,7 @@ public class MatchesRecyclerAdapter extends RecyclerView.Adapter<MatchesRecycler
         }
     }
 
+    @NonNull
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(layout, viewGroup, false);
@@ -48,9 +49,16 @@ public class MatchesRecyclerAdapter extends RecyclerView.Adapter<MatchesRecycler
         viewHolder.textViewDate.setText(match.getCommence_time());
 
         if (match.getBookmakers() != null && !match.getBookmakers().isEmpty()) {
-            viewHolder.textViewUno.setText("1\n" + match.getBookmakers().get(0).getMarkets().get(0).getOutcomes().get(1).getPrice());
-            viewHolder.textViewX.setText("X\n" + match.getBookmakers().get(0).getMarkets().get(0).getOutcomes().get(2).getPrice());
-            viewHolder.textViewDue.setText("2\n" + match.getBookmakers().get(0).getMarkets().get(0).getOutcomes().get(0).getPrice());
+            if (match.getBookmakers().get(0).getMarkets() != null && !match.getBookmakers().get(0).getMarkets().isEmpty() &&
+                    match.getBookmakers().get(0).getMarkets().get(0).getOutcomes() != null && match.getBookmakers().get(0).getMarkets().get(0).getOutcomes().size() >= 3) {
+                viewHolder.textViewUno.setText("1\n" + match.getBookmakers().get(0).getMarkets().get(0).getOutcomes().get(1).getPrice());
+                viewHolder.textViewX.setText("X\n" + match.getBookmakers().get(0).getMarkets().get(0).getOutcomes().get(2).getPrice());
+                viewHolder.textViewDue.setText("2\n" + match.getBookmakers().get(0).getMarkets().get(0).getOutcomes().get(0).getPrice());
+            } else {
+                viewHolder.textViewUno.setText("1\n**");
+                viewHolder.textViewX.setText("X\n**");
+                viewHolder.textViewDue.setText("2\n**");
+            }
         } else {
             viewHolder.textViewUno.setText("1\n**");
             viewHolder.textViewX.setText("X\n**");
@@ -63,10 +71,8 @@ public class MatchesRecyclerAdapter extends RecyclerView.Adapter<MatchesRecycler
         return matchesList.size();
     }
 
-    // Metodo per aggiornare i dati senza ricreare l'adapter
-    public void setMatchesList(List<Match> newMatches) {
-        this.matchesList.clear();
-        this.matchesList.addAll(newMatches);
+    public void setMatchesList(List<Match> matches) {
+        this.matchesList = matches;
         notifyDataSetChanged();
     }
 }
