@@ -4,22 +4,16 @@ import static com.example.fivebetserio.util.Constants.USER_COLLISION_ERROR;
 import static com.example.fivebetserio.util.Constants.WEAK_PASSWORD_ERROR;
 
 import android.os.Bundle;
-
 import androidx.lifecycle.ViewModelProvider;
-// import androidx.navigation.Navigation;
 import android.view.View;
-
 import com.example.fivebetserio.model.Result;
 import com.example.fivebetserio.model.User;
+import com.example.fivebetserio.ui.home.viewModel.user.UserViewModel;
+import com.example.fivebetserio.ui.home.viewModel.user.UserViewModelFactory;
 import com.example.fivebetserio.util.ServiceLocator;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.example.fivebetserio.repository.user.IUserRepository;
-// import com.example.fivebetserio.home.viewmodel.ArticleViewModelFactory;
-import com.example.fivebetserio.ui.viewmodel.UserViewModel;
-import com.example.fivebetserio.ui.viewmodel.UserViewModelFactory;
-
-
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.widget.Button;
@@ -28,25 +22,16 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.fivebetserio.R;
-
 import org.apache.commons.validator.routines.EmailValidator;
-
 import java.util.Calendar;
 
 public class RegisterActivity extends AppCompatActivity {
 
     private UserViewModel userViewModel;
-
     private TextInputEditText editTextName, editTextSurname, editTextPassword, editTextEmail;
-
     private EditText editTextDate;
-
     ProgressBar progressBar;
-
     int year, month, day;
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,8 +43,6 @@ public class RegisterActivity extends AppCompatActivity {
         userViewModel = new ViewModelProvider(this, new UserViewModelFactory(userRepository)).get(UserViewModel.class);
         userViewModel.setAuthenticationError(false);
 
-
-        //ti ho dichiarato tutti gli editText della pagina register cosi non devi farlo, in teoria sai gia cosa contengono
         editTextName = findViewById(R.id.register_name);
         editTextSurname = findViewById(R.id.register_surname);
         editTextPassword = findViewById(R.id.register_password);
@@ -73,7 +56,6 @@ public class RegisterActivity extends AppCompatActivity {
         backButton.setOnClickListener(view -> {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
-
             //animazione personalizzata
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         });
@@ -135,63 +117,51 @@ public class RegisterActivity extends AppCompatActivity {
                 return;
             }
 
-            if (!userViewModel.isAuthenticationError()) {
-                userViewModel.getUserMutableLiveData(email, password, false).observe(this, result -> {
-                    progressBar.setVisibility(View.GONE);
-                    if (result.isSuccess()) {
+            if (!userViewModel.isAuthenticationError()) { // Controlla se non c'è stato un errore di autenticazione
+                userViewModel.getUserMutableLiveData(email, password, false).observe(this, result -> { // Attende il risultato della registrazione
+                    progressBar.setVisibility(View.GONE); // Nasconde la barra di caricamento
+                    if (result.isSuccess()) { // Se la registrazione ha successo
                         User user = ((Result.UserSuccess) result).getData();
                         userViewModel.setAuthenticationError(false);
-
-                        // Navigazione all'Activity successiva
+                        // Passa alla schermata principale
                         Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
                         startActivity(intent);
                         finish();
-                    } else {
+                    } else { // Se la registrazione fallisce
                         userViewModel.setAuthenticationError(true);
                         Snackbar.make(findViewById(android.R.id.content),
                                 getErrorMessage(((Result.Error) result).getMessage()),
-                                Snackbar.LENGTH_SHORT).show();
+                                Snackbar.LENGTH_SHORT).show(); // Mostra un messaggio di errore
                     }
                 });
             } else {
-                userViewModel.getUser(email, password, false);
+                userViewModel.getUser(email, password, false); // Tenta di registrare l'utente di nuovo
             }
         });
     }
 
     private boolean isEmailOk(String email){
-        return EmailValidator.getInstance().isValid(email);  //libreria esterna che fa da sola il controllo per la mail
+        return EmailValidator.getInstance().isValid(email);  //libreria esterna per controllo per la mail
     }
 
     private boolean isPasswordOk(String password){
-        return password.length() > 7;
+        return password.length() > 7; // controllo per password
     }
 
-    //cercherò qualche libreria per fare in controllo dell'età, si potrebbe fare a mano ma non mi piace troppo
-    private boolean isDateOk(){
-        return false;
-    }
-
-    //classe per controllare se l'utente è maggiorenne
+    // controllo per utente maggiorenne
     public boolean isAdult(int year, int month, int day) {
         // Ottieni la data attuale
         Calendar today = Calendar.getInstance();
         int currentYear = today.get(Calendar.YEAR);
-        int currentMonth = today.get(Calendar.MONTH) + 1; // I mesi partono da 0
+        int currentMonth = today.get(Calendar.MONTH) + 1;
         int currentDay = today.get(Calendar.DAY_OF_MONTH);
-
-        // Calcola la differenza degli anni
         int age = currentYear - year;
 
-        // Verifica il mese e il giorno per aggiustare il calcolo
         if (currentMonth < month || (currentMonth == month && currentDay < day)) {
-            age--; // L'utente non ha ancora compiuto gli anni
+            age--;
         }
-
-        // Ritorna true se ha almeno 18 anni
         return age >= 18;
     }
-
 
     private String getErrorMessage(String message) {
         switch (message) {

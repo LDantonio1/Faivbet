@@ -1,13 +1,8 @@
 package com.example.fivebetserio.source.user;
 
-
 import com.example.fivebetserio.model.User;
 import com.example.fivebetserio.repository.user.UserResponseCallback;
 
-
-/**
- * Base class to manage the user authentication.
- */
 public abstract class BaseUserAuthenticationRemoteDataSource {
     protected UserResponseCallback userResponseCallback;
 

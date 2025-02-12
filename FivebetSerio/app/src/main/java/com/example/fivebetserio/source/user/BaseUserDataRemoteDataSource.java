@@ -1,9 +1,7 @@
 package com.example.fivebetserio.source.user;
 
-
 import com.example.fivebetserio.model.User;
 import com.example.fivebetserio.repository.user.UserResponseCallback;
-
 
 public abstract class BaseUserDataRemoteDataSource {
 
@@ -15,7 +13,4 @@ public abstract class BaseUserDataRemoteDataSource {
 
     public abstract void saveUserData(User user);
 
-    public abstract void getUserPreferences(String idToken);
-
-    public abstract void saveUserPreferences();
 }

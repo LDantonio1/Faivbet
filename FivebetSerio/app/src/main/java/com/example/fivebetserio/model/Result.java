@@ -11,6 +11,7 @@ public abstract class Result {
      * Class that represents a successful action during the interaction
      * with a Web Service or a local database.
      */
+
     public static final class LeagueSuccess extends Result {
         private final LeaguesAPIResponse leaguesAPIResponse;
         public LeagueSuccess(LeaguesAPIResponse leaguesAPIResponse) {
@@ -46,6 +47,7 @@ public abstract class Result {
      * Class that represents an error occurred during the interaction
      * with a Web Service or a local database.
      */
+
     public static final class Error extends Result {
         private final String message;
         public Error(String message) {

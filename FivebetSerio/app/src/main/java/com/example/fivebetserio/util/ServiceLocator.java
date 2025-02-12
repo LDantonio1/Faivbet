@@ -1,7 +1,6 @@
 package com.example.fivebetserio.util;
 
 import android.app.Application;
-
 import com.example.fivebetserio.R;
 import com.example.fivebetserio.database.LeaguesRoomDatabase;
 import com.example.fivebetserio.repository.Repository;
@@ -23,14 +22,10 @@ import com.example.fivebetserio.source.user.BaseUserAuthenticationRemoteDataSour
 import com.example.fivebetserio.source.user.BaseUserDataRemoteDataSource;
 import com.example.fivebetserio.source.user.UserAuthenticationFirebaseDataSource;
 import com.example.fivebetserio.source.user.UserFirebaseDataSource;
-import com.example.fivebetserio.util.Constants;
-import com.example.fivebetserio.util.SharedPreferencesUtils;
-
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 
 public class ServiceLocator {

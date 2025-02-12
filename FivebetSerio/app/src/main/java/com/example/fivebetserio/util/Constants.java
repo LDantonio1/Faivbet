@@ -21,17 +21,9 @@ public class Constants {
     public static final String H2H = "h2h";
     public static final String UNIBET = "unibet_eu";
     public static final String DECIMAL = "decimal";
-
-    public static final String TOP_HEADLINES_PAGE_SIZE_PARAMETER = "pageSize";
-    public static final int TOP_HEADLINES_PAGE_SIZE_VALUE = 100;
-
     public static final String REMOVED_ARTICLE_TITLE = "[Removed]";
-
     public static final String SHARED_PREFERENCES_FILENAME = "com.example.Fivebet.preferences";
-    public static final String SHARED_PREFERENCES_COUNTRY_OF_INTEREST = "country_of_interest";
-    public static final String SHARED_PREFERENCES_CATEGORIES_OF_INTEREST = "categories_of_interest";
     public static final String SHARED_PREFERENCES_LAST_UPDATE = "last_update";
-
     public static final String RETROFIT_ERROR = "retrofit_error";
     public static final String API_KEY_ERROR = "api_key_error";
     public static final String UNEXPECTED_ERROR = "unexpected_error";
@@ -45,8 +37,6 @@ public class Constants {
     public static final String FIREBASE_REALTIME_DATABASE = "https://faivbet-6776c-default-rtdb.europe-west1.firebasedatabase.app";
 
     public static final String FIREBASE_USERS_COLLECTION = "users";
-
-
 
 
     public static final int DATABASE_VERSION = 2;
