@@ -27,5 +27,14 @@
     <string name="error_no_internet">No internet connection</string>
     <string name="error_collision_user">This email is already registered</string>
     <string name="error_unexpected">Unexpected error</string>
+    <string name="backbutton">backbutton</string>
+    <string name="fraseBenvenuto">Inserisci i tuoi dati e inizia subito a divertirti!</string>
+    <string name="data">Seleziona una data</string>
+    <string name="nome_della_lega">Nome della Lega</string>
+    <string name="dataMDH">**-** **:**</string>
+    <string name="homeTeam">***</string>
+    <string name="awayTeam">***</string>
+    <string name="quota1">**</string>
+    <string name="logo">Logo</string>
 
 </resources>

@@ -12,9 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
-        <!-- Media -->
-
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="100dp"
@@ -22,9 +19,6 @@
             app:srcCompat="@drawable/faivbet_photoroom"
             android:background="@null"
             />
-
-        <!-- Buttons -->
-
     </LinearLayout>
 
 </com.google.android.material.card.MaterialCardView>

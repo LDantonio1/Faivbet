@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.MainActivity">
 
-    <!-- roba varia, dovrebbe essere abbastanza facile da capire, nel caso chidete -->
     <LinearLayout
         android:id="@+id/faivbet_logo"
         android:layout_width="wrap_content"
@@ -18,10 +17,6 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <include layout="@layout/activity_layout" />
-        <!-- ho usato include invece che immagineView perche non so per quale motivo
-             non riuscivo a rimpicciolire l'immagine come volevo io, quindi ho creato
-             un'altro xml che poi importo (c'e sicuramente un modo migliore, ma solo cosi sono riuscito a farlo) -->
-
     </LinearLayout>
 
 
@@ -52,7 +47,7 @@
         app:layout_constraintEnd_toEndOf="@id/guideline2"
         app:layout_constraintTop_toBottomOf="@id/welcome"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="13dp"
+        android:layout_marginStart="13dp"
         />
 
     <com.google.android.material.textfield.TextInputLayout

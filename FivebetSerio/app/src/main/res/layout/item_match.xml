@@ -25,7 +25,7 @@
                 android:id="@+id/date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="**-**  **:**"
+                android:text="@string/dataMDH"
                 android:layout_marginStart="4dp"/>
 
             <!-- Linea orizzontale -->
@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginStart="5dp"
-                android:text="***"/>
+                android:text="@string/homeTeam"/>
 
             <!-- TextView per la squadra ospite -->
             <TextView
@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginStart="5dp"
-                android:text="***"/>
+                android:text="@string/awayTeam"/>
         </LinearLayout>
 
         <LinearLayout
@@ -69,7 +69,7 @@
                 android:layout_width="50dp"
                 android:layout_height="42dp"
                 android:layout_weight="1"
-                android:text="**"
+                android:text="@string/quota1"
                 android:autoSizeTextType="uniform" />
 
             <!-- Pulsante per quota2 -->
@@ -80,7 +80,7 @@
                 android:layout_height="42dp"
                 android:layout_weight="1"
                 android:paddingBottom="2dp"
-                android:text="**"
+                android:text="@string/quota1"
                 android:autoSizeTextType="uniform" />
 
             <!-- Pulsante per quota3 -->
@@ -90,7 +90,7 @@
                 android:layout_width="50dp"
                 android:layout_height="42dp"
                 android:layout_weight="1"
-                android:text="**"
+                android:text="@string/quota1"
                 android:autoSizeTextType="uniform" />
         </LinearLayout>
     </LinearLayout>

@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:text="Nome della Lega"
+            android:text="@string/nome_della_lega"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true" />
 

@@ -20,7 +20,7 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginTop="37dp"
-            android:contentDescription="backbutton"
+            android:contentDescription="@string/backbutton"
             android:src="@drawable/back"
             android:backgroundTint="@color/backgroundColor"/>
 
@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Inserisci i tuoi dati e inizia subito a divertirti!"
+        android:text="@string/fraseBenvenuto"
         android:textSize="18sp"
         android:textStyle="bold|italic"
         android:typeface="normal"
@@ -105,34 +105,12 @@
             />
 
     </com.google.android.material.textfield.TextInputLayout>
-    <!--
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textfield_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/data_di_nascita"
-        app:layout_constraintTop_toBottomOf="@id/textfield_email"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        >
-
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/register_date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="date"
-            />
-
-    </com.google.android.material.textfield.TextInputLayout>
-!-->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textfield_date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Seleziona una data"
+        android:hint="@string/data"
         app:endIconMode="none"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"

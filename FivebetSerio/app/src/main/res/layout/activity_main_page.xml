@@ -18,7 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/faivbet_photoroom"
-        android:contentDescription="Logo" />
+        android:contentDescription="@string/logo" />
 
     <!-- RecyclerView principale per le leghe -->
     <androidx.recyclerview.widget.RecyclerView
