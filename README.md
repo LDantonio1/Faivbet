@@ -8,4 +8,4 @@ dantonio lorenzo 899759
 
 ## dettagli progetto:
 
-Faivbet è un'applicazione che permette di effettuare scommesse sportive utilizzando credito fittizio
+Faivbet è un'app che offre agli utenti la possibilità di consultare il calendario delle partite di ogni campionato, accompagnato dalle relative quote disponibili.
